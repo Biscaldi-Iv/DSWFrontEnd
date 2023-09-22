@@ -9,6 +9,8 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { LoginComponent } from './Components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { UsuarioService } from './services/usuarios/usuario.service';
+import { MainComponent } from './Components/main/main.component';
+import { ProductsComponent } from './Components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { UsuarioService } from './services/usuarios/usuario.service';
     NavbarComponent,
     FooterComponent,
     LoginComponent,
+    MainComponent,
+    ProductsComponent,
 
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],

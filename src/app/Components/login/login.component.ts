@@ -24,7 +24,9 @@ export class LoginComponent {
         },
         (err) => {
           console.log(err);
+          return;
         }
     );
+    this.router.navigate(['/']);
   }
 }
