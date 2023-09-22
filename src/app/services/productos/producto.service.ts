@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { Producto } from 'src/app/Interfaces/Producto';
 
 @Injectable({
@@ -10,8 +10,9 @@ export class ProductoService {
   constructor(private http:HttpClient) { }
 
   getProductos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>('http://localhost:3000/api/products').pipe(
-      catchError(this.handleError<Producto[]>('getHeroes', []))
+    return this.http.get<{products:Producto[]}>('http://localhost:3000/api/products').pipe(
+      map(response => response.products),
+      catchError(this.handleError<any>('getProducts', []))
     );
   }
 
