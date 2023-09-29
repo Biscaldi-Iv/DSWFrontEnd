@@ -1,3 +1,4 @@
+import { environment } from '../environments/environment';
 import { Component } from '@angular/core';
 import { Producto } from 'src/app/Interfaces/Producto';
 import { ProductoService } from 'src/app/services/productos/producto.service';
@@ -10,6 +11,7 @@ import { ProductoService } from 'src/app/services/productos/producto.service';
 export class ProductsComponent {
   products: Producto[] = [];
   selectedProd: Producto | undefined;
+  apiUrl = environment.apiUrl;
 
   constructor(private service: ProductoService) { }
 

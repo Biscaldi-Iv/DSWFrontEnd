@@ -15,7 +15,8 @@
 
         <div class="relative">
           <input
-            [(ngModel)]="usuario.email" [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="usuario.email"
+            [ngModelOptions]="{ standalone: true }"
             type="email"
             class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
             placeholder="Ingresa email"
@@ -44,7 +45,9 @@
         <label for="password" class="sr-only">Password</label>
 
         <div class="relative">
-          <input [(ngModel)]="usuario.password" [ngModelOptions]="{standalone: true}"
+          <input
+            [(ngModel)]="usuario.password"
+            [ngModelOptions]="{ standalone: true }"
             type="password"
             class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
             placeholder="Ingresa contraseña"
@@ -78,10 +81,11 @@
       <div class="flex items-center justify-between">
         <p class="text-sm text-gray-500">
           No registrado?
-          <a class="underline" [routerLink]="['/register']">Sign up</a>
+          <a class="underline" href="singup">Sign up</a>
         </p>
 
-        <button (click)="ingresar()"
+        <button
+          (click)="ingresar()"
           type="submit"
           class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
         >

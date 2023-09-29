@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { UsuarioService } from './services/usuarios/usuario.service';
 import { MainComponent } from './Components/main/main.component';
 import { ProductsComponent } from './Components/products/products.component';
+import { SingUpComponent } from './Components/sing-up/sing-up.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProductsComponent } from './Components/products/products.component';
     LoginComponent,
     MainComponent,
     ProductsComponent,
+    SingUpComponent,
 
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
