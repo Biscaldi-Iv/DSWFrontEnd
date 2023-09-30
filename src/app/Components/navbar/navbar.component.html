@@ -2,7 +2,7 @@
   <div
     class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
   >
-    <a href="#" class="flex items-center">
+    <a (click)="inicio()" class="flex items-center">
       <img
         src="https://flowbite.com/docs/images/logo.svg"
         class="h-8 mr-3"
@@ -48,7 +48,7 @@
       >
         <li>
           <a
-            href=""
+            (click)="inicio()"
             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
             aria-current="page"
             >Inicio</a
@@ -61,25 +61,53 @@
             >Buscar</a
           >
         </li>
-        <li>
+        <li *ngIf="tipoUsuario == 'user'">
           <a
-            href="#"
+            (click)="crearTienda()"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            >Crear Tienda</a
+          >
+        </li>
+        <li *ngIf="tipoUsuario == 'seller'">
+          <a
+            (click)="panelTienda()"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            >Tienda</a
+          >
+        </li>
+        <li *ngIf="tipoUsuario == 'admin'">
+          <a
+            (click)="panelAdmin()"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            >Panel Admin</a
+          >
+        </li>
+        <li *ngIf="usuarioService.estaAutentificado()">
+          <a
+            (click)="configuracion()"
             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
             >Configuracion</a
           >
         </li>
-        <li>
+        <li *ngIf="!usuarioService.estaAutentificado()">
           <a
-            href="login"
+            (click)="login()"
             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
             >Login</a
           >
         </li>
-        <li>
+        <li *ngIf="!usuarioService.estaAutentificado()">
           <a
-            href="singup"
+            (click)="registrarse()"
             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
             >Sign up</a
+          >
+        </li>
+        <li *ngIf="usuarioService.estaAutentificado()">
+          <a
+            (click)="cerrarSesion()"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            >Cerrar Sesion</a
           >
         </li>
       </ul>

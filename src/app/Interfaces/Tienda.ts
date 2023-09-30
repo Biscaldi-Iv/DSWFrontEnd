@@ -1,5 +1,5 @@
 export interface Tienda{
-  nombre?: string;
+  name?: string;
   about?: string;
   email?: string;
   shopAdress?: string;

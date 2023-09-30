@@ -1,0 +1,187 @@
+<div class="flex mt-5 justify-center h-screen">
+  <form class="w-full max-w-lg">
+    <!-- informacion Personal -->
+    <form [formGroup]="infoForm">
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-3">Información Personal</h2>
+        <div class="w-full px-3 mb-6">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="grid-email"
+          >
+            Email
+          </label>
+          <input
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="email"
+            type="email"
+            autocomplete="off"
+            formControlName="email"
+            [ngClass]="{
+              'border-red-500':
+                infoForm.get('email')?.invalid &&
+                infoForm.get('email')?.touched,
+              'border-green-500':
+                infoForm.get('email')?.valid && infoForm.get('email')?.touched
+            }"
+            placeholder="ejemplo@ejemplo.com"
+          />
+          <!-- Agregar un mensaje de validación si es necesario -->
+        </div>
+        <div class="w-full px-3 mb-6">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="grid-telefono"
+          >
+            Teléfono
+          </label>
+          <input
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="telefono"
+            type="text"
+            autocomplete="off"
+            formControlName="telefono"
+            [ngClass]="{
+              'border-red-500':
+                infoForm.get('telefono')?.invalid &&
+                infoForm.get('telefono')?.touched,
+              'border-green-500':
+                infoForm.get('telefono')?.valid &&
+                infoForm.get('telefono')?.touched
+            }"
+            placeholder="Ejemplo de teléfono"
+          />
+          <!-- Agregar un mensaje de validación si es necesario -->
+        </div>
+        <div class="w-full px-3 mb-6">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="grid-direccion"
+          >
+            Dirección
+          </label>
+          <input
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="direccion"
+            type="text"
+            autocomplete="off"
+            formControlName="direccion"
+            [ngClass]="{
+              'border-red-500':
+                infoForm.get('direccion')?.invalid &&
+                infoForm.get('direccion')?.touched,
+              'border-green-500':
+                infoForm.get('direccion')?.valid &&
+                infoForm.get('direccion')?.touched
+            }"
+            placeholder="Ejemplo de dirección"
+          />
+          <!-- Agregar un mensaje de validación si es necesario -->
+        </div>
+      </div>
+      <div class="w-full px-3 mb-6">
+        <button
+          type="submit"
+          (click)="guardarInfo()"
+          [disabled]="infoForm.invalid"
+          [ngClass]="{
+            'bg-gray-300': infoForm.invalid,
+            'bg-blue-700': infoForm.valid
+          }"
+          class="w-full text-white bg-blue-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+        >
+          Guardar Cambios
+        </button>
+      </div>
+    </form>
+    <!-- cambiar contraseña -->
+    <form [formGroup]="passForm">
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-3">Cambiar Contraseña</h2>
+        <div class="w-full px-3 mb-6">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="grid-password"
+          >
+            Nueva Contraseña
+          </label>
+          <input
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="contrasenia"
+            type="password"
+            formControlName="contrasenia"
+            [ngClass]="{
+              'border-red-500':
+                passForm.get('contrasenia')?.invalid &&
+                passForm.get('contrasenia')?.touched,
+              'border-green-500':
+                passForm.get('contrasenia')?.valid &&
+                passForm.get('contrasenia')?.touched
+            }"
+            placeholder="********"
+          />
+        </div>
+        <div class="w-full px-3 mb-6">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="grid-confirmpassword"
+          >
+            Confirmar Contraseña
+          </label>
+          <input
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="confirmContrasenia"
+            type="password"
+            formControlName="confirmContrasenia"
+            [ngClass]="{
+              'border-red-500':
+                passForm.get('confirmContrasenia')?.invalid &&
+                passForm.get('confirmContrasenia')?.touched,
+              'border-green-500':
+                passForm.get('confirmContrasenia')?.valid &&
+                passForm.get('confirmContrasenia')?.touched
+            }"
+            placeholder="********"
+          />
+        </div>
+      </div>
+      <div class="w-full px-3 mb-6">
+        <button
+          type="submit"
+          (click)="cambiarPass()"
+          [disabled]="passForm.invalid"
+          [ngClass]="{
+            'bg-gray-300': passForm.invalid,
+            'bg-blue-700': passForm.valid
+          }"
+          class="w-full text-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+        >
+          Guardar Cambios
+        </button>
+      </div>
+    </form>
+
+    <!-- Eliminar Cuenta -->
+    <div class="mb-6">
+      <h2 class="text-xl font-semibold mb-3">Eliminar Cuenta</h2>
+      <div class="w-full px-3 mb-6">
+        <button
+          type="submit"
+          class="w-full text-white bg-red-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+        >
+          Eliminar Cuenta
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div id="successMessage" class="hidden min-h-screen h-100 absolute">
+    <div class="block w-full">
+      <div
+        class="font-regular relative mb-4 block w-full rounded-lg bg-green-500 p-4 text-base leading-5 text-white opacity-100"
+      >
+        ¡Guardado exitosamente!
+      </div>
+    </div>
+  </div>
+</div>
