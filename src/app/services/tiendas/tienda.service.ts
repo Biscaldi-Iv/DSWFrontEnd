@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { environment } from 'src/app/Components/environments/environment';
 import { Tienda } from 'src/app/Interfaces/Tienda';
 
@@ -28,5 +28,16 @@ export class TiendaService {
           }
         })
       );
+  }
+
+  updateTienda(data: Tienda): Observable<Tienda>{
+    const httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`
+    })
+    };
+    return this.http.put<{shop: Tienda}>(this.apiUrl + 'api/update-tienda', data, httpOptions).pipe(
+     map(response => response.shop)
+    );
   }
 }
