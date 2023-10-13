@@ -11,7 +11,12 @@ export class ProductoService {
   apiUrl = environment.apiUrl;
   constructor(private http:HttpClient) { }
 
-  getProductos(): Observable<Producto[]> {
+  getProductos(filtro?: string): Observable<Producto[]> {
+    if (filtro) {
+      return this.http.get<{products:Producto[]}>(this.apiUrl+'api/products?'+filtro).pipe(
+      map(response => response.products)
+    );
+    }
     return this.http.get<{products:Producto[]}>(this.apiUrl+'api/products').pipe(
       map(response => response.products)
     );

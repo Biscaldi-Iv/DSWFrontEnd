@@ -1,12 +1,14 @@
 import { Carrito } from 'src/app/Interfaces/Carrito';
 import { environment } from '../environments/environment';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Producto } from 'src/app/Interfaces/Producto';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { ProductoService } from 'src/app/services/productos/producto.service';
 
 // Initialization for ES Users
 import { Carousel, initTE } from "tw-elements";
+import { CategoriaService } from 'src/app/services/categorias/categoria.service';
+import { Categoria } from 'src/app/Interfaces/Categoria';
 
 @Component({
   selector: 'app-products',
@@ -14,12 +16,15 @@ import { Carousel, initTE } from "tw-elements";
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
+  @Input() categoria: string = '';
+
   products: Producto[] = [];
+  categs: Categoria[] = [];
   buyList: Carrito= this.Carrito.get();
   selectedProd: Producto | undefined;
   apiUrl = environment.apiUrl;
 
-  constructor(private service: ProductoService, private Carrito:CarritoService) { }
+  constructor(private service: ProductoService, private Carrito:CarritoService, private Categorias: CategoriaService) { }
 
   ngOnInit() {
     initTE({ Carousel });
@@ -28,6 +33,10 @@ export class ProductsComponent {
       console.log(this.products);
     });
     console.log(this.buyList);
+    this.Categorias.get().subscribe((res) => {
+      this.categs = res;
+      console.log(this.categs);
+    })
   }
 
   agregarAlCarrito(prod: Producto) {
@@ -43,6 +52,17 @@ export class ProductsComponent {
     this.buyList.productos!.push({ 'producto': prod, 'cantidad': 1 });
     this.Carrito.save(this.buyList);
     console.log('producto agregado');
+  }
+
+  filtrar() {
+    let filtro='';
+    if (this.categoria) {
+      filtro+='categoria='+this.categoria;
+    }
+    this.service.getProductos(filtro).subscribe((res) => {
+      this.products = res;
+      console.log(this.products);
+    });
   }
 
 }
