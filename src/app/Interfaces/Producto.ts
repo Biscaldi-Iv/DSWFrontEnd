@@ -2,7 +2,7 @@
 import { Tienda } from "./Tienda";
 
 export interface Producto{
-  id?: string;
+  _id?: string;
   tienda?: Tienda;
   categoria?: string; //id
   //reseña?: string[];

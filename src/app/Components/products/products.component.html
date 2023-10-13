@@ -1,34 +1,44 @@
 <div class="bg-white">
-  <div
-    class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
-  >
-    <!-- <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2> -->
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <div class="mt-3 bg-white">
+      <h5>Categorías:</h5>
+      <select>
+        <option>A</option>
+        <option>B</option>
+      </select>
+    </div>
 
-    <div
-      class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
-    >
-      <div class="group relative" *ngFor="let prod of products">
+    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <div class="group/item relative hover:-translate-y-1 hover:shadow-lg rounded-lg" *ngFor="let prod of products">
         <div
           class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
         >
-          <img
-            [src]="apiUrl + prod.fotos"
-            alt="Front of men&#039;s Basic Tee in black."
+          <img *ngFor="let foto of prod.fotos"
+            [src]="apiUrl + foto"
+            alt="Foto de muestra de {{ prod.nombre }}"
             class="h-full w-full object-cover object-center lg:h-full lg:w-full"
           />
         </div>
+
         <div class="mt-4 flex justify-between">
           <div>
-            <h3 class="text-sm text-gray-700">
+            <h3 class="text-sm text-indigo-900">
               <a href="#">
-                <span aria-hidden="true" class="absolute inset-0"></span>
                 {{ prod.nombre }}
               </a>
             </h3>
-            <p class="mt-1 text-sm text-gray-500">{{ prod.tienda?.name }}</p>
+            <p class="mt-1 text-sm text-gray-800">{{ prod.tienda?.name }}</p>
+            <p class="text-sm text-gray-700">Restantes: {{ prod.stock }}</p>
           </div>
           <p class="text-sm font-medium text-gray-900">${{ prod.precio }}</p>
         </div>
+        <div class="justify-end mr-4">
+          <button type="button" class="flex flex-row bg-blue-700 text-sm font-medium text-white rounded-md p-3 text-center hover:ring-4"
+          (click)="this.agregarAlCarrito(prod)">
+            Agregal al carro
+          </button>
+        </div>
+
       </div>
     </div>
   </div>

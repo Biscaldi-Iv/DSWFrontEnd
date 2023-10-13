@@ -38,7 +38,7 @@ export class ProductoService {
 
     return this.http.post(this.apiUrl+'api/create-product', formData, httpOptions)
   }
-  
+
 }
 
 
