@@ -17,6 +17,7 @@ import { Categoria } from 'src/app/Interfaces/Categoria';
 })
 export class ProductsComponent {
   @Input() categoria: string = '';
+  @Input() busqueda: string = '';
 
   products: Producto[] = [];
   categs: Categoria[] = [];
@@ -58,6 +59,9 @@ export class ProductsComponent {
     let filtro='';
     if (this.categoria) {
       filtro+='categoria='+this.categoria;
+    }
+    if (this.busqueda) {
+      filtro += '&nombre=' + this.busqueda;
     }
     this.service.getProductos(filtro).subscribe((res) => {
       this.products = res;
