@@ -1,4 +1,4 @@
-//import { Categoria } from "./Categoria";
+import { Categoria } from "./Categoria";
 import { Tienda } from "./Tienda";
 
 export interface Producto{

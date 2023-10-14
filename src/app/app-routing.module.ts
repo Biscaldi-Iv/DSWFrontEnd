@@ -8,11 +8,13 @@ import { ConfiguracionComponent } from './Components/configuracion/configuracion
 import { CrearTiendaComponent } from './Components/crear-tienda/crear-tienda.component';
 import { PanelTiendaComponent } from './Components/panel-tienda/panel-tienda.component';
 import { PanelAdminComponent } from './Components/panel-admin/panel-admin.component';
+import { CarritoComponent } from './Components/carrito/carrito.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'singup', component: SingUpComponent },
+  { path: 'carrito', component: CarritoComponent},
   { path: 'configuracion', component: ConfiguracionComponent },
   { path: 'crear-tienda', component: CrearTiendaComponent},
   { path: 'panel-tienda', component: PanelTiendaComponent},

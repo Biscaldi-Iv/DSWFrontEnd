@@ -12,6 +12,7 @@ export class CategoriaService {
   apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
+  /**Devuelve todas las categorias */
   get(): Observable<Categoria[]>{
     return this.http.get<{ data: Categoria[] }>(this.apiUrl + 'api/categorias').pipe(
       map(response => response.data)

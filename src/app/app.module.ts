@@ -18,6 +18,7 @@ import { ConfiguracionComponent } from './Components/configuracion/configuracion
 import { CrearTiendaComponent } from './Components/crear-tienda/crear-tienda.component';
 import { PanelTiendaComponent } from './Components/panel-tienda/panel-tienda.component';
 import { PanelAdminComponent } from './Components/panel-admin/panel-admin.component';
+import { CarritoComponent } from './Components/carrito/carrito.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PanelAdminComponent } from './Components/panel-admin/panel-admin.compon
     CrearTiendaComponent,
     PanelTiendaComponent,
     PanelAdminComponent,
+    CarritoComponent,
 
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],

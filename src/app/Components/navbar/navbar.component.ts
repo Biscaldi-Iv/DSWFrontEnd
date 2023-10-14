@@ -38,10 +38,13 @@ export class NavbarComponent {
       }
     );
   }
-  
+
 
   inicio(){
     this.router.navigate(['/'])
+  }
+  carrito() {
+    this.router.navigate(['/carrito'])
   }
   login(){
     this.router.navigate(['/login'])

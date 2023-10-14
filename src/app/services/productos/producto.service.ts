@@ -21,6 +21,12 @@ export class ProductoService {
       map(response => response.products)
     );
   }
+
+  getOne(id: string):Observable<Producto> {
+    return this.http.get<{ producto: Producto }>(this.apiUrl + 'api/products/' + id).pipe(
+      map(response => response.producto));
+  }
+
   crearProducto(producto:Producto, imagenes: FileList){
     const httpOptions = {
     headers: new HttpHeaders({
