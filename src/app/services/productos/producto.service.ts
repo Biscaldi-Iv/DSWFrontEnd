@@ -30,7 +30,7 @@ export class ProductoService {
   crearProducto(producto:Producto, imagenes: FileList){
     const httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`
+      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
     })
     };
 

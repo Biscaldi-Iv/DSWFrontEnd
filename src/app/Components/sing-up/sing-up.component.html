@@ -29,10 +29,10 @@
               [ngClass]="{
                 'border-red-500':
                   signUpForm.get('email')?.invalid &&
-                  signUpForm.get('email')?.touched,
+                  signUpForm.get('email')?.value,
                 'border-green-500':
                   signUpForm.get('email')?.valid &&
-                  signUpForm.get('email')?.touched
+                  signUpForm.get('email')?.value
               }"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="ejemplo@ejemplo.com"
@@ -42,7 +42,7 @@
             <div
               *ngIf="
                 signUpForm.get('email')?.invalid &&
-                signUpForm.get('email')?.touched
+                signUpForm.get('email')?.value
               "
               class="text-red-500 text-xs mt-1"
             >
@@ -63,10 +63,10 @@
               [ngClass]="{
                 'border-red-500':
                   signUpForm.get('direccion')?.invalid &&
-                  signUpForm.get('direccion')?.touched,
+                  signUpForm.get('direccion')?.value,
                 'border-green-500':
                   signUpForm.get('direccion')?.valid &&
-                  signUpForm.get('direccion')?.touched
+                  signUpForm.get('direccion')?.value
               }"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Ejemplo de dirección"
@@ -75,7 +75,7 @@
             <div
               *ngIf="
                 signUpForm.get('direccion')?.invalid &&
-                signUpForm.get('direccion')?.touched
+                signUpForm.get('direccion')?.value
               "
               class="text-red-500 text-xs mt-1"
             >
@@ -96,10 +96,10 @@
               [ngClass]="{
                 'border-red-500':
                   signUpForm.get('telefono')?.invalid &&
-                  signUpForm.get('telefono')?.touched,
+                  signUpForm.get('telefono')?.value,
                 'border-green-500':
                   signUpForm.get('telefono')?.valid &&
-                  signUpForm.get('telefono')?.touched
+                  signUpForm.get('telefono')?.value
               }"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Ejemplo de teléfono"
@@ -108,7 +108,7 @@
             <div
               *ngIf="
                 signUpForm.get('telefono')?.invalid &&
-                signUpForm.get('telefono')?.touched
+                signUpForm.get('telefono')?.value
               "
               class="text-red-500 text-xs mt-1"
             >
@@ -128,10 +128,10 @@
               [ngClass]="{
                 'border-red-500':
                   signUpForm.get('password')?.invalid &&
-                  signUpForm.get('password')?.touched,
+                  signUpForm.get('password')?.value,
                 'border-green-500':
                   signUpForm.get('password')?.valid &&
-                  signUpForm.get('password')?.touched
+                  signUpForm.get('password')?.value
               }"
               placeholder="••••••••"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -151,10 +151,10 @@
               [ngClass]="{
                 'border-red-500':
                   signUpForm.get('confirmPassword')?.invalid &&
-                  signUpForm.get('confirmPassword')?.touched,
+                  signUpForm.get('confirmPassword')?.value,
                 'border-green-500':
                   signUpForm.get('confirmPassword')?.valid &&
-                  signUpForm.get('confirmPassword')?.touched
+                  signUpForm.get('confirmPassword')?.value
               }"
               placeholder="••••••••"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -165,7 +165,7 @@
                 signUpForm
                   .get('confirmPassword')
                   ?.hasError('passwordMismatch') &&
-                signUpForm.get('confirmPassword')?.touched
+                signUpForm.get('confirmPassword')?.value
               "
               class="text-red-500 text-xs mt-1"
             >

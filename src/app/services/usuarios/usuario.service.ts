@@ -11,67 +11,49 @@ export class UsuarioService {
   constructor(private http: HttpClient) {}
   apiUrl = environment.apiUrl;
   private token!: string;
-  private isAuthenticated = true;
+  private isAuthenticated = false;
 
   estaAutentificado(): boolean {
     return this.isAuthenticated;
   }
   private conseguirToken() {
     if (!this.token) {
-      this.token = localStorage.getItem('ACCESS_TOKEN')!;
+      this.token = sessionStorage.getItem('ACCESS_TOKEN')!;
     }
     return this.token;
   }
 
-  private guardarToken(token: string) {
-    localStorage.setItem('ACCESS_TOKEN', token);
+  guardarToken(token: string) {
+    sessionStorage.setItem('ACCESS_TOKEN', token);
     this.token = token;
   }
   logout(){
     this.token='';
-    localStorage.removeItem("ACCESS_TOKEN");
+    sessionStorage.removeItem("ACCESS_TOKEN");
     this.isAuthenticated = false;
   }
 
 
 
 
-  login(user: Usuario): Observable<Usuario> {
-    this.isAuthenticated = true;
+  login(user: Usuario): Observable<{accessToken?:string,message?:string}> {
     /* console.log(user); */
     return this.http
-      .post<Usuario>(this.apiUrl+ 'api/login', user)
-      .pipe(
-        tap((res: any) => {
-          if (res) {
-            //guardar token
-            this.guardarToken(res.accessToken);
-            
-            console.log(this.conseguirToken());
-          }
-        })
-      );
+      .post<{ accessToken?: string, message: string }>(this.apiUrl + 'api/login', user);
   }
 
   register(user: Usuario): Observable<Usuario> {
     console.log(user);
     return this.http
-      .post<Usuario>(this.apiUrl+ 'api/user', user)
-      .pipe(
-        tap((res: any) => {
-          if (res) {
-            //guardar token
-            this.guardarToken(res.accessToken);
-            console.log(this.conseguirToken());
-          }
-        })
+      .post<Usuario>(this.apiUrl + 'api/user', user).pipe(
+        map(res => res)
       );
   }
 
   getUsuarioByToken(): Observable<Usuario> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`
+        'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
       })
     };
 
@@ -79,12 +61,12 @@ export class UsuarioService {
      map(response => response.data)
     );
   }
- 
+
 
   updateUsuario(data: Usuario): Observable<Usuario>{
     const httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`
+      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
     })
     };
     return this.http.put<{data: Usuario}>(this.apiUrl + 'api/user-info', data, httpOptions).pipe(
@@ -94,7 +76,7 @@ export class UsuarioService {
   updatePass(user: Usuario): Observable<Usuario>{
     const httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`
+      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
     })
     };
     return this.http.put<{user: Usuario}>(this.apiUrl + 'api/user-password', user, httpOptions).pipe(

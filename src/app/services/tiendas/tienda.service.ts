@@ -15,7 +15,7 @@ export class TiendaService {
   createTienda(tienda: Tienda): Observable<Tienda> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`
+        'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
       })
     };
     return this.http
@@ -24,7 +24,7 @@ export class TiendaService {
         tap((res: any) => {
           if (res) {
             //guardar token
-            localStorage.setItem('ACCESS_TOKEN', res.token);
+            sessionStorage.setItem('ACCESS_TOKEN', res.token);
           }
         })
       );
@@ -33,7 +33,7 @@ export class TiendaService {
   updateTienda(data: Tienda): Observable<Tienda>{
     const httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`
+      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
     })
     };
     return this.http.put<{shop: Tienda}>(this.apiUrl + 'api/update-tienda', data, httpOptions).pipe(

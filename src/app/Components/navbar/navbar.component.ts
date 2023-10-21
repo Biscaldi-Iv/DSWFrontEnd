@@ -31,12 +31,14 @@ export class NavbarComponent {
     this.isMenuOpen = !this.isMenuOpen;
   }
   ngOnInit() {
-    this.authService.getRole().subscribe(
-      res=>{
-        console.log(res.data)
-        this.tipoUsuario=res.data;
-      }
-    );
+    if (this.authService.isAuthenticated()) {
+      this.authService.getRole().subscribe(
+        res=>{
+          console.log(res.data)
+          this.tipoUsuario=res.data;
+        }
+      );
+    }
   }
 
 
