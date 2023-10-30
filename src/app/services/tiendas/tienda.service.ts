@@ -40,4 +40,19 @@ export class TiendaService {
      map(response => response.shop)
     );
   }
+  deleteTienda(){
+    const httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
+    })
+    };
+    return this.http.delete<any>(this.apiUrl + 'api/tienda', httpOptions).pipe(
+     tap((res: any) => {
+          if (res) {
+            //guardar token
+            sessionStorage.setItem('ACCESS_TOKEN', res.token);
+          }
+        })
+    );
+  }
 }

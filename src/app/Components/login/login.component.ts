@@ -32,6 +32,7 @@ export class LoginComponent {
           } else {
             this.message = "Credenciales invalidas";
           }
+          
         },
         (err) => {
           this.message = "Credenciales invalidas";

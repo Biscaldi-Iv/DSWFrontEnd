@@ -12,6 +12,8 @@ export class AuthService {
 
    isAuthenticated(): boolean {
     const token = sessionStorage.getItem('ACCESS_TOKEN'); // Obtén el token del almacenamiento local
+    console.log('token')
+    console.log(!!token)
     // Realiza la lógica de verificación aquí
     return !!token; // Devuelve true si el token existe, de lo contrario, false
   }
