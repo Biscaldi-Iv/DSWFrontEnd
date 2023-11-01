@@ -35,13 +35,11 @@ export class UsuarioService {
 
 
   login(user: Usuario): Observable<{accessToken?:string,message?:string}> {
-    this.isAuthenticated = true;
     return this.http
       .post<{ accessToken?: string, message: string }>(this.apiUrl + 'api/login', user);
   }
 
   register(user: Usuario): Observable<Usuario> {
-    this.isAuthenticated = true;
     console.log(user);
     return this.http
       .post<Usuario>(this.apiUrl + 'api/user', user).pipe(
