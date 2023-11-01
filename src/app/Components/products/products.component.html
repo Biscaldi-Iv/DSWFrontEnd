@@ -48,7 +48,7 @@
           <p class="text-sm font-medium text-gray-900">${{ prod.precio }}</p>
         </div>
         <div class="justify-end items-end mr-4">
-          <button type="button" class="flex flex-row bg-blue-700 text-sm font-medium text-white rounded-md p-3 m-2 text-center hover:ring-4"
+          <button *ngIf="prod.stock>0" type="button" class="flex flex-row bg-blue-700 text-sm font-medium text-white rounded-md p-3 m-2 text-center hover:ring-4"
           (click)="this.agregarAlCarrito(prod)">
             Agregal al carro
           </button>

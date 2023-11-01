@@ -4,8 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 /* componentes */
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { FooterComponent } from './Components/footer/footer.component';
@@ -19,6 +22,7 @@ import { CrearTiendaComponent } from './Components/crear-tienda/crear-tienda.com
 import { PanelTiendaComponent } from './Components/panel-tienda/panel-tienda.component';
 import { PanelAdminComponent } from './Components/panel-admin/panel-admin.component';
 import { CarritoComponent } from './Components/carrito/carrito.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,8 @@ import { CarritoComponent } from './Components/carrito/carrito.component';
     CarritoComponent,
 
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule,
+  MatFormFieldModule,MatTableModule,MatInputModule,MatIconModule],
   providers: [UsuarioService],
   bootstrap: [AppComponent],
 })

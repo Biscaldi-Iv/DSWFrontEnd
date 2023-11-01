@@ -1,4 +1,7 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/app/Components/environments/environment';
 import { Carrito } from 'src/app/Interfaces/Carrito';
 
 @Injectable({
@@ -6,12 +9,22 @@ import { Carrito } from 'src/app/Interfaces/Carrito';
 })
 export class CarritoService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+  apiUrl = environment.apiUrl;
 
   create():Carrito {
     let carr: Carrito = { 'apertura': new Date(), 'productos': [] };
     localStorage.setItem('carrito', JSON.stringify(carr));
     return carr;
+  }
+
+  comprar(compra: { comprador: string, productos: [{ producto: string, cantidad: number, precio: number }] }): Observable<{ message: string }> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
+      })
+    };
+    return this.http.post<{ message: string }>(this.apiUrl + 'api/comprar', compra, httpOptions);
   }
 
   /**
@@ -36,5 +49,9 @@ export class CarritoService {
    */
   save(carr: Carrito) {
     localStorage.setItem('carrito', JSON.stringify(carr));
+  }
+
+  delete() {
+    localStorage.removeItem('carrito');
   }
 }

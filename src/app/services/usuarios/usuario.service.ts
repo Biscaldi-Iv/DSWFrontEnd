@@ -11,10 +11,9 @@ export class UsuarioService {
   constructor(private http: HttpClient) {}
   apiUrl = environment.apiUrl;
   private token!: string;
-  private isAuthenticated = false;
 
   estaAutentificado(): boolean {
-    return this.isAuthenticated;
+    return !!sessionStorage.getItem('ACCESS_TOKEN');
   }
   private conseguirToken() {
     if (!this.token) {
@@ -30,7 +29,6 @@ export class UsuarioService {
   logout(){
     this.token='';
     sessionStorage.removeItem("ACCESS_TOKEN");
-    this.isAuthenticated = false;
   }
 
 

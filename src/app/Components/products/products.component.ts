@@ -44,9 +44,12 @@ export class ProductsComponent {
     this.buyList = this.Carrito.get();
     for (let item of this.buyList.productos!) {
       if (item?.producto!._id == prod._id) {
+        item!.producto = prod;
         item!.cantidad! += 1;
+        if (item!.producto.stock < item!.cantidad!) {
+          item!.cantidad = item!.producto.stock;
+        }
         this.Carrito.save(this.buyList);
-        console.log('cantidad incrementada');
         return;
       }
     }
