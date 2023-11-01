@@ -35,12 +35,13 @@ export class UsuarioService {
 
 
   login(user: Usuario): Observable<{accessToken?:string,message?:string}> {
-    /* console.log(user); */
+    this.isAuthenticated = true;
     return this.http
       .post<{ accessToken?: string, message: string }>(this.apiUrl + 'api/login', user);
   }
 
   register(user: Usuario): Observable<Usuario> {
+    this.isAuthenticated = true;
     console.log(user);
     return this.http
       .post<Usuario>(this.apiUrl + 'api/user', user).pipe(
@@ -80,5 +81,16 @@ export class UsuarioService {
     return this.http.put<{user: Usuario}>(this.apiUrl + 'api/user-password', user, httpOptions).pipe(
      map(response => response.user)
     );
+  }
+
+  deleteUser(){
+    const httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
+      })
+    }
+    return this.http.delete<any>(this.apiUrl + 'api/user', httpOptions).pipe(
+        map(res => res)
+      );
   }
 }

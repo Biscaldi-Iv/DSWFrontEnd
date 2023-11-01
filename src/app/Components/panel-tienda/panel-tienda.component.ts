@@ -99,4 +99,12 @@ export class PanelTiendaComponent {
   onFileSelected(event: any){
     this.selectedFiles = event.target.files;
   }
+  eliminarTienda(){
+    this.tiendaServicio.deleteTienda().subscribe(
+      res=>{
+        console.log(res)
+        console.log('tienda eliminada')
+      }
+    )
+  }
 }

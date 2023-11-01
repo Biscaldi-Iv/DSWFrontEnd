@@ -70,4 +70,14 @@ export class ConfiguracionComponent {
       );
     }
   }
+
+  eliminarCuenta(){
+    this.usuarioServicio.deleteUser().subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+    this.usuarioServicio.logout()
+    this.router.navigate(['/']);
+  }
 }
