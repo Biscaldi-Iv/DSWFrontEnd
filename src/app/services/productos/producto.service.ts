@@ -49,6 +49,20 @@ export class ProductoService {
 
     return this.http.post(this.apiUrl+'api/create-product', formData, httpOptions)
   }
+  actualizarProducto(){
+
+  }
+
+  eliminarProducto(id: string){
+    const httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
+      })
+    }
+    return this.http.delete<any>(this.apiUrl + 'api/products/'+ id, httpOptions).pipe(
+        map(res => res)
+      );
+  }
 
 }
 

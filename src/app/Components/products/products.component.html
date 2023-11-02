@@ -1,34 +1,72 @@
 <div class="bg-white">
-  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+  <div
+    class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
+  >
     <div class="grid grid-cols-3 mt-1 mb-1 bg-gray-300 rounded-md">
       <div class="relative m-4">
         <h5>Categorías:</h5>
-        <select [(ngModel)]="categoria" class="m-2 rounded-sm bg-cyan-50 hover:ring-2
-        w-1/2 h-8 hover:ring-indigo-900 active:ring-indigo-900 active:ring-2">
-          <option *ngFor="let c of categs" value="{{c._id}}">{{ c.descripcion }}</option>
+        <select
+          [(ngModel)]="categoria"
+          class="m-2 rounded-sm bg-cyan-50 hover:ring-2 w-1/2 h-8 hover:ring-indigo-900 active:ring-indigo-900 active:ring-2"
+        >
+          <option *ngFor="let c of categs" value="{{ c._id }}">
+            {{ c.descripcion }}
+          </option>
         </select>
       </div>
       <div class="relative row m-4">
         <label>Buscar</label>
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
+        <div
+          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+        >
+          <svg
+            class="w-4 h-4 text-gray-500 dark:text-gray-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="3"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+            />
+          </svg>
         </div>
-        <input type="search" [(ngModel)]="busqueda" class="w-full pl-8 mb-6 md:mb-0 h-8 rounded-md" minlength="3" maxlength="20" placeholder="Buscar por nombre">
+        <input
+          type="search"
+          [(ngModel)]="busqueda"
+          class="w-full pl-8 mb-6 md:mb-0 h-8 rounded-md"
+          minlength="3"
+          maxlength="20"
+          placeholder="Buscar por nombre"
+        />
       </div>
       <div class="row-end-auto m-4 flex items-center justify-end">
-        <button type="button" class="flex flex-row bg-blue-700 text-sm font-medium text-white rounded-md p-3 text-center hover:ring-4
-        active:ring-4 active:ring-blue-500" (click)="filtrar()">Filtrar</button>
+        <button
+          type="button"
+          class="flex flex-row bg-blue-700 text-sm font-medium text-white rounded-md p-3 text-center hover:ring-4 active:ring-4 active:ring-blue-500"
+          (click)="filtrar()"
+        >
+          Filtrar
+        </button>
       </div>
     </div>
 
-    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      <div class="group/item relative hover:-translate-y-1 hover:shadow-lg rounded-lg" *ngFor="let prod of products">
+    <div
+      class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
+    >
+      <div
+        class="group/item relative hover:-translate-y-1 hover:shadow-lg rounded-lg"
+        *ngFor="let prod of products"
+      >
         <div
           class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
         >
-          <img *ngFor="let foto of prod.fotos"
+          <img
+            *ngFor="let foto of prod.fotos"
             [src]="apiUrl + foto"
             alt="Foto de muestra de {{ prod.nombre }}"
             class="h-full w-full object-cover object-center lg:h-full lg:w-full"
@@ -48,12 +86,15 @@
           <p class="text-sm font-medium text-gray-900">${{ prod.precio }}</p>
         </div>
         <div class="justify-end items-end mr-4">
-          <button *ngIf="prod.stock>0" type="button" class="flex flex-row bg-blue-700 text-sm font-medium text-white rounded-md p-3 m-2 text-center hover:ring-4"
-          (click)="this.agregarAlCarrito(prod)">
+          <button
+            *ngIf="prod.stock > 0"
+            type="button"
+            class="flex flex-row bg-blue-700 text-sm font-medium text-white rounded-md p-3 m-2 text-center hover:ring-4"
+            (click)="this.agregarAlCarrito(prod)"
+          >
             Agregal al carro
           </button>
         </div>
-
       </div>
     </div>
   </div>

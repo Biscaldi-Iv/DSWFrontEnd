@@ -4,4 +4,5 @@ export interface Usuario{
   direccion?:string;
   email?: string;
   password?:string;
+  tienda?:string;
 }

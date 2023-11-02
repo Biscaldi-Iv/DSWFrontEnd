@@ -23,6 +23,8 @@ import { PanelTiendaComponent } from './Components/panel-tienda/panel-tienda.com
 import { PanelAdminComponent } from './Components/panel-admin/panel-admin.component';
 import { CarritoComponent } from './Components/carrito/carrito.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductodetalleComponent } from './Components/productodetalle/productodetalle.component';
+import { EditarProductoComponent } from './Components/editar-producto/editar-producto.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PanelTiendaComponent,
     PanelAdminComponent,
     CarritoComponent,
+    ProductodetalleComponent,
+    EditarProductoComponent,
 
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule,

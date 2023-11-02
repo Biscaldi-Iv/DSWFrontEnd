@@ -24,14 +24,14 @@ export class ConfiguracionComponent {
   });
 
   ngOnInit() {
-  this.usuarioServicio.getUsuarioByToken().subscribe(res => {
-    this.usuario = res;
-    this.infoForm.patchValue({
-      email: this.usuario.email,
-      telefono: this.usuario.telefono,
-      direccion: this.usuario.direccion
+    this.usuarioServicio.getUsuarioByToken().subscribe(res => {
+      this.usuario = res;
+      this.infoForm.patchValue({
+        email: this.usuario.email,
+        telefono: this.usuario.telefono,
+        direccion: this.usuario.direccion
+      });
     });
-  });
   }
 
   guardarInfo(){
