@@ -19,11 +19,12 @@ export class SingUpComponent {
   constructor(private usuarioServicio: UsuarioService, private router: Router){}
   usuario: Usuario = { email: '', direccion: '', telefono:'' , password: '' }
   signUpForm= new FormGroup({
-      'email': new FormControl('', [Validators.required, Validators.email]),
-      'direccion': new FormControl('', Validators.required),
-      'telefono': new FormControl('', Validators.required),
-      'password': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
-      'confirmPassword': new FormControl('', [Validators.required, Validators.minLength(4)])
+    'email': new FormControl('', [Validators.required, Validators.email]),
+    'direccion': new FormControl('', Validators.required),
+    'telefono': new FormControl('', [Validators.required, Validators.pattern('^(\\+){0,1}((\\d)+(\\s)*)*$')]),
+    'password': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
+    'confirmPassword': new FormControl('', [Validators.required, Validators.minLength(4)]),
+    'terms':new FormControl(false,Validators.requiredTrue)
   }, {validators:this.checkPasswords});
 
 
