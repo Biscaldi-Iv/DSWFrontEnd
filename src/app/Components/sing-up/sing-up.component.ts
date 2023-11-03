@@ -36,17 +36,19 @@ export class SingUpComponent {
         this.usuario.password = this.signUpForm.value.password?? undefined;
         this.usuarioServicio.register(this.usuario).subscribe(
           (res) => {
-            console.log(res);
+            if (res.accessToken) {
+              this.usuarioServicio.guardarToken(res.accessToken);
+              this.router.navigate(['/']);
+            } else {
+              //this.message = "Credenciales invalidas";
+              //agregar notificacion si falla
+            }
           },
           (err) => {
             console.log(err);
-            return;
           }
         );
-      } else {
-
       }
-      this.router.navigate(['/'])
   }
 
 }
