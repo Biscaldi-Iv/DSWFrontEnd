@@ -14,7 +14,6 @@ export class NavbarComponent {
   isMenuOpen = true;
   isMobile = true;
   accessToken ='';
-  tipoUsuario='';
   constructor(public usuarioService: UsuarioService, private  authService: AuthService, private router: Router) {}
 
 
@@ -30,17 +29,10 @@ export class NavbarComponent {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
-  ngOnInit() {
-    if (this.usuarioService.estaAutentificado()) {
-      this.authService.getRole().subscribe(
-        res=>{
-          console.log(res.data)
-          this.tipoUsuario=res.data;
-        }
-      );
-    }
-  }
 
+  get tipoUsuario() {
+    return this.usuarioService.rol;
+  }
 
   inicio(){
     this.router.navigate(['/'])
@@ -56,7 +48,7 @@ export class NavbarComponent {
   }
   cerrarSesion(){
     this.usuarioService.logout();
-    this.inicio();
+    this.router.navigate(['/']);
   }
   configuracion(){
     this.router.navigate(['/configuracion'])

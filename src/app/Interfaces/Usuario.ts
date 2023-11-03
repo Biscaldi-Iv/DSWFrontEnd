@@ -3,5 +3,6 @@ export interface Usuario{
   telefono?:string;
   direccion?:string;
   email?: string;
-  password?:string;
+  password?: string;
+  role?: string;
 }

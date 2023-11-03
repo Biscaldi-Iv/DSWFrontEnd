@@ -15,6 +15,7 @@ export class UsuarioService {
   estaAutentificado(): boolean {
     return !!sessionStorage.getItem('ACCESS_TOKEN');
   }
+
   private conseguirToken() {
     if (!this.token) {
       this.token = sessionStorage.getItem('ACCESS_TOKEN')!;
@@ -25,10 +26,25 @@ export class UsuarioService {
   guardarToken(token: string) {
     sessionStorage.setItem('ACCESS_TOKEN', token);
     this.token = token;
+    this.getUsuarioByToken().subscribe(res => {
+      if (res) {
+        sessionStorage.setItem('user', JSON.stringify(res));
+      }
+    });
   }
+
+  get rol() {
+    if (this.estaAutentificado()) {
+      const user = JSON.parse(sessionStorage.getItem('user')!) as Usuario;
+      if(user) return user.role!;
+    }
+    return '';
+  }
+
   logout(){
     this.token='';
     sessionStorage.removeItem("ACCESS_TOKEN");
+    sessionStorage.removeItem("user");
   }
 
 
@@ -39,10 +55,10 @@ export class UsuarioService {
       .post<{ accessToken?: string, message: string }>(this.apiUrl + 'api/login', user);
   }
 
-  register(user: Usuario): Observable<Usuario> {
+  register(user: Usuario): Observable<{ accessToken?: string, message: string }> {
     console.log(user);
     return this.http
-      .post<Usuario>(this.apiUrl + 'api/user', user).pipe(
+      .post<{ accessToken?: string, message: string }>(this.apiUrl + 'api/user', user).pipe(
         map(res => res)
       );
   }
