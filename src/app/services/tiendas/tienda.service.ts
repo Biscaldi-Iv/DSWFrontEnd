@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
 import { environment } from 'src/app/Components/environments/environment';
+import { Producto } from 'src/app/Interfaces/Producto';
 import { Tienda } from 'src/app/Interfaces/Tienda';
 
 @Injectable({
@@ -53,6 +54,17 @@ export class TiendaService {
             sessionStorage.setItem('ACCESS_TOKEN', res.token);
           }
         })
+    );
+  }
+  getProductosTienda(id: string){
+    const httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
+    })
+    };
+    console.log(this.apiUrl+'api/productsbyshop/'+id)
+    return this.http.get<{data:Producto[]}>(this.apiUrl+'api/productsbyshop/'+id, httpOptions).pipe(
+      map(response => response.data)
     );
   }
 }

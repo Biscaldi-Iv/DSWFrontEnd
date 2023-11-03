@@ -24,6 +24,8 @@ import { PanelAdminComponent } from './Components/panel-admin/panel-admin.compon
 import { CarritoComponent } from './Components/carrito/carrito.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificacionComponent } from './Components/notificacion/notificacion.component';
+import { ProductodetalleComponent } from './Components/productodetalle/productodetalle.component';
+import { EditarProductoComponent } from './Components/editar-producto/editar-producto.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { NotificacionComponent } from './Components/notificacion/notificacion.co
     PanelAdminComponent,
     CarritoComponent,
     NotificacionComponent,
+    ProductodetalleComponent,
+    EditarProductoComponent,
 
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule,

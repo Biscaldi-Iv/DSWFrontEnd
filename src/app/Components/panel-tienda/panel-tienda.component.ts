@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 import { Producto } from 'src/app/Interfaces/Producto';
 import { Tienda } from 'src/app/Interfaces/Tienda';
+import { Usuario } from 'src/app/Interfaces/Usuario';
 import { ProductoService } from 'src/app/services/productos/producto.service';
 import { TiendaService } from 'src/app/services/tiendas/tienda.service';
+import { UsuarioService } from 'src/app/services/usuarios/usuario.service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-panel-tienda',
@@ -12,11 +16,16 @@ import { TiendaService } from 'src/app/services/tiendas/tienda.service';
   styleUrls: ['./panel-tienda.component.css']
 })
 export class PanelTiendaComponent {
-  constructor(private tiendaServicio: TiendaService, private productoServicio: ProductoService, private router: Router){}
+  constructor(private tiendaServicio: TiendaService, private productoServicio: ProductoService, private router: Router, private usuarioService:UsuarioService){}
   tienda: Tienda = { name: '', about: '', email:'' , shopAdress: '' };
   producto: Producto= { categoria:'', nombre:'', descripcion:'', precio:0, stock:0, fotos:'', habilitado:true};
   infoTienda:boolean=true;
   mostrarProducto:boolean=false;
+  mostrarPublicaciones:boolean=false;
+  usuario: Usuario = { email: '', direccion: '', telefono:'' , password: '', tienda:'' }
+  idTienda:string='';
+  products: Producto[] = [];
+  apiUrl = environment.apiUrl;
   infoForm= new FormGroup({
     'name': new FormControl('', Validators.required),
     'about': new FormControl('', Validators.required),
@@ -33,6 +42,23 @@ export class PanelTiendaComponent {
     'stock': new FormControl('', Validators.required),
     'archivo': new FormControl(null, Validators.required)    
   });
+ 
+  
+  ngOnInit() {
+  this.usuarioService.getUsuarioByToken()
+    .pipe(
+      switchMap(usuario => {
+        this.usuario = usuario;
+        this.idTienda = this.usuario.tienda || '';
+        return this.tiendaServicio.getProductosTienda(this.idTienda);
+      })
+    )
+    .subscribe(products => {
+      console.log(products);
+      this.products = products;
+      console.log(products);
+    });
+}
   guardarCambios(){
     if(this.infoForm.valid){
       if(this.infoForm.valid){
@@ -86,14 +112,17 @@ export class PanelTiendaComponent {
   mostrarConfiguracion(){
     this.infoTienda=true;
     this.mostrarProducto=false;
+    this.mostrarPublicaciones=false;
   }
   nuevoProducto(){
     this.infoTienda=false;
     this.mostrarProducto=true;
+    this.mostrarPublicaciones=false;
   }
   mostrarMisProductos(){
     this.infoTienda=false;
     this.mostrarProducto=false;
+    this.mostrarPublicaciones=true;
   }
   selectedFiles!: FileList;
   onFileSelected(event: any){

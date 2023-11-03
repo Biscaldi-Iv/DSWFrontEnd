@@ -9,6 +9,8 @@ import { CrearTiendaComponent } from './Components/crear-tienda/crear-tienda.com
 import { PanelTiendaComponent } from './Components/panel-tienda/panel-tienda.component';
 import { PanelAdminComponent } from './Components/panel-admin/panel-admin.component';
 import { CarritoComponent } from './Components/carrito/carrito.component';
+import { ProductodetalleComponent } from './Components/productodetalle/productodetalle.component';
+import { EditarProductoComponent } from './Components/editar-producto/editar-producto.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: 'configuracion', component: ConfiguracionComponent },
   { path: 'crear-tienda', component: CrearTiendaComponent},
   { path: 'panel-tienda', component: PanelTiendaComponent},
-  { path: 'panel-admin', component: PanelAdminComponent}
+  { path: 'panel-admin', component: PanelAdminComponent},
+  { path: 'productos/:id', component: ProductodetalleComponent},
+  { path: 'productos/:id/editar', component: EditarProductoComponent },
 
 ];
 

@@ -8,7 +8,7 @@ export interface Producto{
   //reseña?: string[];
   nombre?: string;
   descripcion?: string;
-  precio?: number;
+  precio: number;
   stock: number,
   fotos: string;
   habilitado: boolean;
