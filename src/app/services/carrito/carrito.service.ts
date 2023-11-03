@@ -18,7 +18,7 @@ export class CarritoService {
     return carr;
   }
 
-  comprar(compra: { comprador: string, productos: [{ producto: string, cantidad: number, precio: number }] }): Observable<{ message: string }> {
+  comprar(compra: { productos: [{ producto: string, cantidad: number, precio: number }] }): Observable<{ message: string }> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`

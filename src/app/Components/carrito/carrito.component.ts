@@ -66,14 +66,10 @@ export class CarritoComponent {
   }
 
   comprar() {
-    let compra = {comprador:'',productos:(this.lineasCompra.value.filter((l) => l!.cantidad! > 0) as [{producto:string,cantidad:number,precio:number}])};
-    this.UsuarioService.getUsuarioByToken().subscribe((usr) => {
-      compra.comprador = usr._id!;
-      console.log(compra);
-      this.Carrito.comprar(compra).subscribe((msg) => {
+    let compra = {productos:(this.lineasCompra.value.filter((l) => l!.cantidad! > 0) as [{producto:string,cantidad:number,precio:number}])};
+    this.Carrito.comprar(compra).subscribe((msg) => {
         console.log(msg);
-      });
-    });
+      })
   }
 
   reducirCant(_t12: number, e: HTMLButtonElement) {
