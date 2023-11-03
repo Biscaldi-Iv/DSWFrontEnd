@@ -8,6 +8,7 @@ import { ProductoService } from 'src/app/services/productos/producto.service';
 import { environment } from '../environments/environment';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuarios/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
@@ -22,10 +23,13 @@ export class CarritoComponent {
   formCompra:FormGroup =this.fb.group({
     lineasCompra: this.fb.array([])
   });
+  notification = false;
+  notifmsg = '';
+  notiftype = '';
 
 
   constructor(private productoService: ProductoService, private Carrito: CarritoService,
-    private catService: CategoriaService, private fb: FormBuilder,private UsuarioService:UsuarioService) { }
+    private catService: CategoriaService, private fb: FormBuilder,private UsuarioService:UsuarioService, private router: Router) { }
 
   ngOnInit() {
     this.catService.get().subscribe((res) => {
@@ -68,8 +72,17 @@ export class CarritoComponent {
   comprar() {
     let compra = {productos:(this.lineasCompra.value.filter((l) => l!.cantidad! > 0) as [{producto:string,cantidad:number,precio:number}])};
     this.Carrito.comprar(compra).subscribe((msg) => {
-        console.log(msg);
+      console.log(msg);
+      this.notifmsg = msg.message;
+      this.notification = true;
       })
+  }
+
+  cerrar(value: boolean) {
+    if (value) {
+      this.Carrito.delete();
+      this.router.navigate(['/']);
+    }
   }
 
   reducirCant(_t12: number, e: HTMLButtonElement) {
