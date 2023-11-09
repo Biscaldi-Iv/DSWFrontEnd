@@ -12,12 +12,10 @@
               >
                 Categoria
               </label>
-              <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="name"
-                type="text"
-                autocomplete="off"
+              <select
+                (change)="selectCategoria($event)"
                 formControlName="categoria"
+                class="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 [ngClass]="{
                   'border-red-500':
                     prodForm.get('categoria')?.invalid &&
@@ -26,8 +24,11 @@
                     prodForm.get('categoria')?.valid &&
                     prodForm.get('categoria')?.touched
                 }"
-                placeholder="Id de Categoria(cambiar despues por droplist)"
-              />
+              >
+                <option *ngFor="let c of categorias" [value]="c._id">
+                  {{ c.descripcion }}
+                </option>
+              </select>
             </div>
             <div class="w-full px-3 mb-6">
               <label
@@ -164,7 +165,7 @@
           <div
             class="font-regular relative mb-4 block w-full rounded-lg bg-green-500 p-4 text-base leading-5 text-white opacity-100"
           >
-            ¡Producto Creado!
+            ¡Producto Actualizado!
           </div>
         </div>
       </div>

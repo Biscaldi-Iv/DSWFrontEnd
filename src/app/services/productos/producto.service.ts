@@ -49,8 +49,27 @@ export class ProductoService {
 
     return this.http.post(this.apiUrl+'api/create-product', formData, httpOptions)
   }
-  actualizarProducto(){
 
+  editarProducto(id:string, producto:Producto, imagenes: FileList){
+    const httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
+    })
+    };
+    const formData = new FormData();
+    formData.append('categoria', producto.categoria ?? '');
+    formData.append('nombre', producto.nombre ?? '');
+    formData.append('descripcion', producto.descripcion ?? '');
+    formData.append('precio', (producto.precio ?? 0).toString());
+    formData.append('stock', (producto.precio ?? 0).toString());
+    if(imagenes){
+      for (let i = 0; i < imagenes.length; i++) {
+        formData.append('fotos', imagenes[i]);
+      }
+    }
+    console.log(formData.get('fotos'))
+
+    return this.http.put(this.apiUrl+'api/products/'+ id, formData, httpOptions)
   }
 
   eliminarProducto(id: string){

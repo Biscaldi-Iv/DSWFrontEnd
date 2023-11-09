@@ -17,8 +17,8 @@ import { Categoria } from 'src/app/Interfaces/Categoria';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
-  @Input() categoria: string = '';
-  @Input() busqueda: string = '';
+  categoria: string = '';
+  busqueda: string = '';
 
   products: Producto[] = [];
   categs: Categoria[] = [];

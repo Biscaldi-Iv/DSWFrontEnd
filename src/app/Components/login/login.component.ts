@@ -10,8 +10,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  @Input() email: string ='';
-  @Input() password: string = '';
+  email: string ='';
+  password: string = '';
   usuario: Usuario = { email: this.email, password: this.password };
   message?: string = undefined;
   formlogin: FormGroup<{ usermail: FormControl<string | null | undefined>; userpassword: FormControl<string | null | undefined>; }>=new FormGroup({

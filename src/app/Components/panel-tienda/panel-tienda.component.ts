@@ -9,6 +9,8 @@ import { ProductoService } from 'src/app/services/productos/producto.service';
 import { TiendaService } from 'src/app/services/tiendas/tienda.service';
 import { UsuarioService } from 'src/app/services/usuarios/usuario.service';
 import { environment } from '../environments/environment';
+import { Categoria } from 'src/app/Interfaces/Categoria';
+import { CategoriaService } from 'src/app/services/categorias/categoria.service';
 
 @Component({
   selector: 'app-panel-tienda',
@@ -16,7 +18,7 @@ import { environment } from '../environments/environment';
   styleUrls: ['./panel-tienda.component.css']
 })
 export class PanelTiendaComponent {
-  constructor(private tiendaServicio: TiendaService, private productoServicio: ProductoService, private router: Router, private usuarioService:UsuarioService){}
+  constructor(private tiendaServicio: TiendaService, private productoServicio: ProductoService, private router: Router, private usuarioService:UsuarioService, private categoriaService:CategoriaService){}
   tienda: Tienda = { name: '', about: '', email:'' , shopAdress: '' };
   producto: Producto= { categoria:'', nombre:'', descripcion:'', precio:0, stock:0, fotos:'', habilitado:true};
   infoTienda:boolean=true;
@@ -42,23 +44,30 @@ export class PanelTiendaComponent {
     'stock': new FormControl('', Validators.required),
     'archivo': new FormControl(null, Validators.required)    
   });
- 
+  categoria: string='';
+  categorias: Categoria[] = [];
   
   ngOnInit() {
-  this.usuarioService.getUsuarioByToken()
-    .pipe(
-      switchMap(usuario => {
-        this.usuario = usuario;
-        this.idTienda = this.usuario.tienda || '';
-        return this.tiendaServicio.getProductosTienda(this.idTienda);
-      })
-    )
-    .subscribe(products => {
-      console.log(products);
-      this.products = products;
-      console.log(products);
-    });
-}
+    this.categoriaService.get().subscribe((res) => {
+      this.categorias = res;
+      this.categoria=this.categorias[0].descripcion || '';
+      console.log(this.categorias);
+    })
+    this.usuarioService.getUsuarioByToken()
+      .pipe(
+        switchMap(usuario => {
+          this.usuario = usuario;
+          this.idTienda = this.usuario.tienda || '';
+          return this.tiendaServicio.getProductosTienda(this.idTienda);
+        })
+      )
+      .subscribe(products => {
+        console.log(products);
+        this.products = products;
+        console.log(products);
+      });
+    
+  }
   guardarCambios(){
     if(this.infoForm.valid){
       if(this.infoForm.valid){
@@ -94,6 +103,10 @@ export class PanelTiendaComponent {
       )
       
     }
+  }
+  selectCategoria(e:any){
+    console.log(e.target.value);
+    this.categoria=e.target.value;
   }
 
   mostrarCartel() {

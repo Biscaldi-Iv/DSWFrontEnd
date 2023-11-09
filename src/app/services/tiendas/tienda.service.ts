@@ -4,13 +4,14 @@ import { Observable, map, tap } from 'rxjs';
 import { environment } from 'src/app/Components/environments/environment';
 import { Producto } from 'src/app/Interfaces/Producto';
 import { Tienda } from 'src/app/Interfaces/Tienda';
+import { UsuarioService } from '../usuarios/usuario.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TiendaService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private usuarioService: UsuarioService) { }
   apiUrl = environment.apiUrl;
 
   createTienda(tienda: Tienda): Observable<Tienda> {
@@ -25,7 +26,7 @@ export class TiendaService {
         tap((res: any) => {
           if (res) {
             //guardar token
-            sessionStorage.setItem('ACCESS_TOKEN', res.token);
+            this.usuarioService.guardarToken(res.token);
           }
         })
       );
