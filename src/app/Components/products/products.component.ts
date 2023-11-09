@@ -1,6 +1,6 @@
 import { UsuarioService } from './../../services/usuarios/usuario.service';
 import { Carrito } from 'src/app/Interfaces/Carrito';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Component, Input } from '@angular/core';
 import { Producto } from 'src/app/Interfaces/Producto';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';

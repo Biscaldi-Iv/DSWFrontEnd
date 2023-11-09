@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Producto } from 'src/app/Interfaces/Producto';
 import { ProductoService } from 'src/app/services/productos/producto.service';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-productodetalle',

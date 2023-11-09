@@ -5,7 +5,7 @@ import { Producto } from 'src/app/Interfaces/Producto';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { CategoriaService } from 'src/app/services/categorias/categoria.service';
 import { ProductoService } from 'src/app/services/productos/producto.service';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuarios/usuario.service';
 import { Router } from '@angular/router';

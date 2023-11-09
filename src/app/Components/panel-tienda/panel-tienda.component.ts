@@ -8,7 +8,7 @@ import { Usuario } from 'src/app/Interfaces/Usuario';
 import { ProductoService } from 'src/app/services/productos/producto.service';
 import { TiendaService } from 'src/app/services/tiendas/tienda.service';
 import { UsuarioService } from 'src/app/services/usuarios/usuario.service';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Categoria } from 'src/app/Interfaces/Categoria';
 import { CategoriaService } from 'src/app/services/categorias/categoria.service';
 

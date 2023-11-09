@@ -1,5 +1,5 @@
 import { Component, HostListener  } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 import { UsuarioService } from 'src/app/services/usuarios/usuario.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  Url = environment.Url;
+  
   isMenuOpen = true;
   isMobile = true;
   accessToken ='';
