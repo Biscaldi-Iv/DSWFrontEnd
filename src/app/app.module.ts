@@ -26,6 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificacionComponent } from './Components/notificacion/notificacion.component';
 import { ProductodetalleComponent } from './Components/productodetalle/productodetalle.component';
 import { EditarProductoComponent } from './Components/editar-producto/editar-producto.component';
+import { InfoTiendaComponent } from './Components/info-tienda/info-tienda.component';
+import { MisproductosComponent } from './Components/misproductos/misproductos.component';
+import { NuevoProductoComponent } from './Components/nuevo-producto/nuevo-producto.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { EditarProductoComponent } from './Components/editar-producto/editar-pro
     NotificacionComponent,
     ProductodetalleComponent,
     EditarProductoComponent,
+    InfoTiendaComponent,
+    MisproductosComponent,
+    NuevoProductoComponent,
 
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule,
