@@ -32,7 +32,7 @@
               </svg>
 
               <span
-                class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100"
+                class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 z-50"
               >
                 General
               </span>
@@ -47,7 +47,7 @@
               >
                 <span class="material-icons"> book </span>
                 <span
-                  class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100"
+                  class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 z-50"
                 >
                   Mis Productos
                 </span>
@@ -62,7 +62,7 @@
                 <span class="material-icons"> note_add </span>
 
                 <span
-                  class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100"
+                  class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 z-50"
                 >
                   Nuevo Producto
                 </span>
@@ -80,7 +80,7 @@
       *ngIf="infoTienda"
       class="flex items-center justify-center h-screen w-full"
     >
-      <app-info-tienda></app-info-tienda>
+      <app-info-tienda class="w-4/5 md:w-1/2"></app-info-tienda>
     </div>
     <!---Mis productos-->
     <div
@@ -94,7 +94,7 @@
       *ngIf="mostrarProducto"
       class="flex items-center justify-center h-screen w-full"
     >
-      <app-nuevo-producto></app-nuevo-producto>
+      <app-nuevo-producto class="w-4/5 md:w-1/2"></app-nuevo-producto>
     </div>
   </div>
 </div>
