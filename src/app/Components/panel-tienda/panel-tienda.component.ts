@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 
+
 @Component({
   selector: 'app-panel-tienda',
   templateUrl: './panel-tienda.component.html',
@@ -11,6 +12,10 @@ export class PanelTiendaComponent {
   infoTienda:boolean=true;
   mostrarProducto:boolean=false;
   mostrarPublicaciones:boolean=false;
+
+  ngOnInit(){
+
+  }
   
   mostrarConfiguracion(){
     this.infoTienda=true;

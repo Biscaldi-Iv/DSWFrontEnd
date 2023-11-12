@@ -1,1 +1,76 @@
-<p>panel-admin works!</p>
+<div class="flex h-full md:h-screen">
+  <div
+    class="inline-flex h-full md:h-screen w-16 flex-col justify-between border-e bg-white"
+  >
+    <!-- menu derecho -->
+    <div>
+      <div class="border-t border-gray-100">
+        <div class="px-2">
+          <div class="py-4">
+            <a
+              (click)="mostrarListaUser()"
+              class="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
+            >
+              <span class="material-symbols-outlined"> person </span>
+
+              <span
+                class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 z-50"
+              >
+                Lista Usuarios
+              </span>
+            </a>
+          </div>
+
+          <ul class="space-y-1 border-t border-gray-100 pt-4">
+            <!-- <li>
+              <a
+                (click)="nada()"
+                class="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+              >
+                <span class="material-icons"> book </span>
+                <span
+                  class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 z-50"
+                >
+                  Mis Productos
+                </span>
+              </a>
+            </li> -->
+
+            <li>
+              <a
+                (click)="listaCategorias()"
+                class="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+              >
+                <span class="material-icons"> note_add </span>
+
+                <span
+                  class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 z-50"
+                >
+                  Lista Categorias
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- parte izquierda -->
+  <div class="flex-1 w-full">
+    <!-- Lista usuarios -->
+    <div *ngIf="listaUser" class="flex justify-center h-screen w-full">
+      <app-lista-usuario class="w-11/12 md:w-4/5"></app-lista-usuario>
+    </div>
+    <!---categorias-->
+    <div
+      *ngIf="mostrarCategorias"
+      class="flex items-center justify-center h-screen w-full ml-4"
+    >
+      <!-- <app-misproductos></app-misproductos> -->
+    </div>
+    <!-- nada -->
+    <div *ngIf="" class="flex items-center justify-center h-screen w-full">
+      <!-- <app-nuevo-producto class="w-4/5 md:w-1/2"></app-nuevo-producto> -->
+    </div>
+  </div>
+</div>

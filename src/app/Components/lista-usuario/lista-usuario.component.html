@@ -1,0 +1,80 @@
+<div class="pt-3 relative overflow-x-auto shadow-md sm:rounded-lg flex-grow">
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Email</th>
+        <th scope="col" class="px-6 py-3">Telefono</th>
+        <th scope="col" class="px-6 py-3">Direccion</th>
+        <th scope="col" class="px-6 py-3">Rol</th>
+        <th scope="col" class="px-6 py-3">Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        *ngFor="let user of getUsuarios()"
+      >
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          {{ user.email }}
+        </th>
+        <td class="px-6 py-4">{{ user.telefono }}</td>
+        <td class="px-6 py-4">{{ user.direccion }}</td>
+        <td class="px-6 py-4">{{ user.role }}</td>
+        <td class="px-6 py-4">
+          <span class="material-symbols-outlined"> edit </span>
+          <span class="material-symbols-outlined"> delete </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <nav
+    class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
+    aria-label="Table navigation"
+  >
+    <span
+      class="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 w-full hidden md:inline md:w-auto"
+      >Showing
+      <span class="font-semibold text-gray-900 dark:text-white"
+        >{{ (currentPage - 1) * itemsPerPage + 1 }}-{{
+          currentPage * itemsPerPage
+        }}</span
+      >
+      of
+      <span class="font-semibold text-gray-900 dark:text-white">{{
+        usuarios.length
+      }}</span>
+    </span>
+    <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8 w-1/4">
+      <li>
+        <a
+          (click)="onPageChange(currentPage - 1)"
+          [class.disabled]="currentPage === 1"
+          class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          >Previous</a
+        >
+      </li>
+      <li *ngFor="let page of getPageNumbers()">
+        <a
+          (click)="onPageChange(page)"
+          class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          >{{ page }}</a
+        >
+      </li>
+      <li>
+        <a
+          (click)="onPageChange(currentPage + 1)"
+          [class.disabled]="currentPage === totalPages"
+          class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          >Next</a
+        >
+      </li>
+    </ul>
+  </nav>
+</div>

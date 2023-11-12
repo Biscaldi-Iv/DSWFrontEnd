@@ -29,6 +29,7 @@ import { EditarProductoComponent } from './Components/editar-producto/editar-pro
 import { InfoTiendaComponent } from './Components/info-tienda/info-tienda.component';
 import { MisproductosComponent } from './Components/misproductos/misproductos.component';
 import { NuevoProductoComponent } from './Components/nuevo-producto/nuevo-producto.component';
+import { ListaUsuarioComponent } from './Components/lista-usuario/lista-usuario.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NuevoProductoComponent } from './Components/nuevo-producto/nuevo-produc
     InfoTiendaComponent,
     MisproductosComponent,
     NuevoProductoComponent,
+    ListaUsuarioComponent,
 
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule,

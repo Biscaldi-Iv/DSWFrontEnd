@@ -74,7 +74,17 @@ export class UsuarioService {
      map(response => response.data)
     );
   }
+  getAllUsuario(): Observable<Usuario[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
+      })
+    };
 
+    return this.http.get<{data:Usuario[]}>(this.apiUrl + 'api/users', httpOptions).pipe(
+     map(response => response.data)
+    );
+  }
 
   updateUsuario(data: Usuario): Observable<Usuario>{
     const httpOptions = {
