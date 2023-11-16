@@ -32,7 +32,7 @@
               </svg>
 
               <span
-                class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100"
+                class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 z-50"
               >
                 General
               </span>
@@ -47,7 +47,7 @@
               >
                 <span class="material-icons"> book </span>
                 <span
-                  class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100"
+                  class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 z-50"
                 >
                   Mis Productos
                 </span>
@@ -62,7 +62,7 @@
                 <span class="material-icons"> note_add </span>
 
                 <span
-                  class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100"
+                  class="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 z-50"
                 >
                   Nuevo Producto
                 </span>
@@ -80,354 +80,21 @@
       *ngIf="infoTienda"
       class="flex items-center justify-center h-screen w-full"
     >
-      <div>
-        <div class="inline-flex w-full mt-5 justify-center h-screen">
-          <form class="w-full max-w-lg">
-            <form class="w-full" [formGroup]="infoForm">
-              <div class="mb-6">
-                <h2 class="text-xl font-semibold mb-3">
-                  Información de la tienda
-                </h2>
-                <div class="w-full px-3 mb-6">
-                  <label
-                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-nombre-tienda"
-                  >
-                    Nombre de la tienda
-                  </label>
-                  <input
-                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="name"
-                    type="text"
-                    autocomplete="off"
-                    formControlName="name"
-                    [ngClass]="{
-                      'border-red-500':
-                        infoForm.get('name')?.invalid &&
-                        infoForm.get('name')?.touched,
-                      'border-green-500':
-                        infoForm.get('name')?.valid &&
-                        infoForm.get('name')?.touched
-                    }"
-                    placeholder="Nombre de la tienda"
-                  />
-                </div>
-                <div class="w-full px-3 mb-6">
-                  <label
-                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-sobre-tienda"
-                  >
-                    Sobre la tienda
-                  </label>
-                  <textarea
-                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="about"
-                    formControlName="about"
-                    [ngClass]="{
-                      'border-red-500':
-                        infoForm.get('about')?.invalid &&
-                        infoForm.get('about')?.touched,
-                      'border-green-500':
-                        infoForm.get('about')?.valid &&
-                        infoForm.get('about')?.touched
-                    }"
-                    placeholder="Sobre la tienda"
-                  ></textarea>
-                </div>
-                <div class="w-full px-3 mb-6">
-                  <label
-                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-direccion-tienda"
-                  >
-                    Dirección de la tienda
-                  </label>
-                  <input
-                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="shopAdress"
-                    type="text"
-                    autocomplete="off"
-                    formControlName="shopAdress"
-                    [ngClass]="{
-                      'border-red-500':
-                        infoForm.get('shopAdress')?.invalid &&
-                        infoForm.get('shopAdress')?.touched,
-                      'border-green-500':
-                        infoForm.get('shopAdress')?.valid &&
-                        infoForm.get('shopAdress')?.touched
-                    }"
-                    placeholder="Dirección de la tienda"
-                  />
-                </div>
-                <div class="w-full px-3 mb-6">
-                  <label
-                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-mail-tienda"
-                  >
-                    Mail de la tienda
-                  </label>
-                  <input
-                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="email"
-                    type="email"
-                    autocomplete="off"
-                    formControlName="email"
-                    [ngClass]="{
-                      'border-red-500':
-                        infoForm.get('email')?.invalid &&
-                        infoForm.get('email')?.touched,
-                      'border-green-500':
-                        infoForm.get('email')?.valid &&
-                        infoForm.get('email')?.touched
-                    }"
-                    placeholder="ejemplo@tienda.com"
-                  />
-                </div>
-              </div>
-              <div class="w-full px-3 mb-6">
-                <button
-                  type="submit"
-                  (click)="guardarCambios()"
-                  class="w-full text-white bg-blue-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                >
-                  Guardar cambios
-                </button>
-              </div>
-            </form>
-
-            <div class="w-full px-3 mb-6">
-              <button
-                type="submit"
-                (click)="eliminarTienda()"
-                class="w-full text-white bg-red-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              >
-                Eliminar Tienda
-              </button>
-            </div>
-          </form>
-
-          <div id="successMessage" class="hidden min-h-screen h-100 absolute">
-            <div class="block w-full">
-              <div
-                class="font-regular relative mb-4 block w-full rounded-lg bg-green-500 p-4 text-base leading-5 text-white opacity-100"
-              >
-                ¡Guardado exitosamente!
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-info-tienda class="w-4/5 md:w-1/2"></app-info-tienda>
     </div>
     <!---Mis productos-->
     <div
       *ngIf="mostrarPublicaciones"
       class="flex items-center justify-center h-screen w-full ml-4"
     >
-      <div class="inline-flex w-full mt-5 justify-center h-screen">
-        <div
-          class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
-        >
-          <div class="group relative" *ngFor="let product of products">
-            <div
-              class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
-            >
-              <img
-                [src]="apiUrl + product.fotos"
-                alt="{{ product.nombre }}"
-                class="h-full w-full object-cover object-center lg:h-full lg:w-full"
-              />
-            </div>
-            <div class="mt-4 flex justify-between">
-              <div>
-                <h3 class="text-sm text-gray-700">
-                  <a [routerLink]="['/productos', product._id]">{{
-                    product.nombre
-                  }}</a>
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-misproductos></app-misproductos>
     </div>
     <!-- nuevo producto -->
     <div
       *ngIf="mostrarProducto"
       class="flex items-center justify-center h-screen w-full"
     >
-      <div>
-        <div class="inline-flex w-full mt-5 justify-center h-screen">
-          <form class="w-full max-w-lg">
-            <form class="w-full" [formGroup]="prodForm">
-              <div class="mb-6">
-                <h2 class="text-xl font-semibold mb-3">
-                  Información del producto
-                </h2>
-                <div class="w-full px-3 mb-6">
-                  <label
-                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-categoria"
-                  >
-                    Categoria
-                  </label>
-                  <select
-                    (change)="selectCategoria($event)"
-                    formControlName="categoria"
-                    class="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    [ngClass]="{
-                      'border-red-500':
-                        prodForm.get('categoria')?.invalid &&
-                        prodForm.get('categoria')?.touched,
-                      'border-green-500':
-                        prodForm.get('categoria')?.valid &&
-                        prodForm.get('categoria')?.touched
-                    }"
-                  >
-                    <option *ngFor="let c of categorias" [value]="c._id">
-                      {{ c.descripcion }}
-                    </option>
-                  </select>
-                </div>
-                <div class="w-full px-3 mb-6">
-                  <label
-                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-sobre-tienda"
-                  >
-                    Nombre
-                  </label>
-                  <input
-                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="about"
-                    formControlName="nombre"
-                    [ngClass]="{
-                      'border-red-500':
-                        prodForm.get('nombre')?.invalid &&
-                        prodForm.get('nombre')?.touched,
-                      'border-green-500':
-                        prodForm.get('nombre')?.valid &&
-                        prodForm.get('nombre')?.touched
-                    }"
-                    placeholder="Nombre"
-                  />
-                </div>
-                <div class="w-full px-3 mb-6">
-                  <label
-                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-descripcion"
-                  >
-                    Descripcion
-                  </label>
-                  <input
-                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="descripcion"
-                    type="text"
-                    autocomplete="off"
-                    formControlName="descripcion"
-                    [ngClass]="{
-                      'border-red-500':
-                        prodForm.get('descripcion')?.invalid &&
-                        prodForm.get('descripcion')?.touched,
-                      'border-green-500':
-                        prodForm.get('descripcion')?.valid &&
-                        prodForm.get('descripcion')?.touched
-                    }"
-                    placeholder="Descripcion"
-                  />
-                </div>
-                <div class="w-full px-3 mb-6">
-                  <label
-                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-precio"
-                  >
-                    precio
-                  </label>
-                  <input
-                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="precio"
-                    type="text"
-                    autocomplete="off"
-                    formControlName="precio"
-                    [ngClass]="{
-                      'border-red-500':
-                        prodForm.get('precio')?.invalid &&
-                        prodForm.get('precio')?.touched,
-                      'border-green-500':
-                        prodForm.get('precio')?.valid &&
-                        prodForm.get('precio')?.touched
-                    }"
-                    placeholder="Precio"
-                  />
-                </div>
-                <div class="w-full px-3 mb-6">
-                  <label
-                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-stock"
-                  >
-                    Stock
-                  </label>
-                  <input
-                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="stock"
-                    type="text"
-                    autocomplete="off"
-                    formControlName="stock"
-                    [ngClass]="{
-                      'border-red-500':
-                        prodForm.get('stock')?.invalid &&
-                        prodForm.get('stock')?.touched,
-                      'border-green-500':
-                        prodForm.get('stock')?.valid &&
-                        prodForm.get('stock')?.touched
-                    }"
-                    placeholder="Stock"
-                  />
-                </div>
-              </div>
-              <label
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                for="file_input"
-                >Upload file</label
-              >
-              <input
-                formControlName="archivo"
-                [ngClass]="{
-                  'border-red-500':
-                    prodForm.get('archivo')?.invalid &&
-                    prodForm.get('archivo')?.touched,
-                  'border-green-500':
-                    prodForm.get('archivo')?.valid &&
-                    prodForm.get('archivo')?.touched
-                }"
-                class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                (change)="onFileSelected($event)"
-                #fileInput
-                multiple
-                id="file_input"
-                type="file"
-              />
-
-              <div class="w-full px-3 mb-6">
-                <button
-                  type="submit"
-                  (click)="publicarProducto()"
-                  class="w-full text-white bg-blue-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                >
-                  Publicar
-                </button>
-              </div>
-            </form>
-          </form>
-
-          <div id="successMessage" class="hidden min-h-screen h-100 absolute">
-            <div class="block w-full">
-              <div
-                class="font-regular relative mb-4 block w-full rounded-lg bg-green-500 p-4 text-base leading-5 text-white opacity-100"
-              >
-                ¡Producto Creado!
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-nuevo-producto class="w-4/5 md:w-1/2"></app-nuevo-producto>
     </div>
   </div>
 </div>
