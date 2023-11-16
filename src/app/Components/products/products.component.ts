@@ -19,6 +19,7 @@ import { Categoria } from 'src/app/Interfaces/Categoria';
 export class ProductsComponent {
   categoria: string = '';
   busqueda: string = '';
+  message: string = '';
 
   products: Producto[] = [];
   categs: Categoria[] = [];
@@ -42,21 +43,48 @@ export class ProductsComponent {
   }
 
   agregarAlCarrito(prod: Producto) {
+    let b = true;
     this.buyList = this.Carrito.get();
     for (let item of this.buyList.productos!) {
       if (item?.producto!._id == prod._id) {
         item!.producto = prod;
         item!.cantidad! += 1;
+        this.message = `Se añadio ${prod.nombre} al carrito!`;
         if (item!.producto.stock < item!.cantidad!) {
+          this.message = `No se puede añadir ${prod.nombre} al carrito!`;
+          b = false;
           item!.cantidad = item!.producto.stock;
         }
         this.Carrito.save(this.buyList);
+        this.notificar(b);
         return;
       }
     }
     this.buyList.productos!.push({ 'producto': prod, 'cantidad': 1 });
     this.Carrito.save(this.buyList);
-    console.log('producto agregado');
+    this.message = `Se añadio ${prod.nombre} al carrito!`;
+    this.notificar();
+
+  }
+
+  notificar(b:boolean=true) {
+    const successMessage = document.getElementById('successMessage');
+    const msgcolor=document.getElementById('msgcolor')
+    if (successMessage && msgcolor) {
+      // Mostrar el cartel
+      successMessage.classList.remove('hidden');
+      if (!b) {
+        msgcolor.classList.replace('bg-green-500', 'bg-red-500');
+      }
+
+      // Ocultar el cartel después de 2 segundos
+      setTimeout(() => {
+        successMessage.classList.add('hidden');
+        if (!b) {
+        msgcolor.classList.replace('bg-red-500', 'bg-green-500');
+      }
+      }, 2000);
+    }
   }
 
   filtrar() {
