@@ -13,12 +13,23 @@ export class ProductoService {
 
   getProductos(filtro?: string): Observable<Producto[]> {
     if (filtro) {
-      return this.http.get<{products:Producto[]}>(this.apiUrl+'api/products?'+filtro).pipe(
+      return this.http.get<{products:Producto[]}>(this.apiUrl+'api/productos?'+filtro).pipe(
       map(response => response.products)
     );
     }
-    return this.http.get<{products:Producto[]}>(this.apiUrl+'api/products').pipe(
+    return this.http.get<{products:Producto[]}>(this.apiUrl+'api/productos').pipe(
       map(response => response.products)
+    );
+  }
+
+  cantPaginas(filtro?: string): Observable<number>{
+    if (filtro) {
+      return this.http.get<{ pages: number }>(this.apiUrl+'api/productos/paginate?'+filtro).pipe(
+      map(response => response.pages)
+    );
+    }
+    return this.http.get<{ pages: number }>(this.apiUrl+'api/productos/paginate').pipe(
+      map(response => response.pages)
     );
   }
 

@@ -20,12 +20,16 @@ export class ProductsComponent {
   categoria: string = '';
   busqueda: string = '';
   message: string = '';
+  paginas: number = 1;
+  paginaActual: number = 1;
+  filtro: string = 'page=1';
 
   products: Producto[] = [];
   categs: Categoria[] = [];
   buyList: Carrito= this.Carrito.get();
   selectedProd: Producto | undefined;
   apiUrl = environment.apiUrl;
+  numbers?: number[];
 
   constructor(private service: ProductoService, private Carrito:CarritoService, private Categorias: CategoriaService) { }
 
@@ -33,13 +37,14 @@ export class ProductsComponent {
     initTE({ Carousel });
     this.service.getProductos().subscribe((res) => {
       this.products = res;
-      console.log(this.products);
     });
-    console.log(this.buyList);
+    this.service.cantPaginas().subscribe((res) => {
+      this.paginas = res;
+      this.numbers = Array(this.paginas).fill(0).map((x,i)=>i+1);
+    });
     this.Categorias.get().subscribe((res) => {
       this.categs = res;
-      console.log(this.categs);
-    })
+    });
   }
 
   agregarAlCarrito(prod: Producto) {
@@ -88,16 +93,36 @@ export class ProductsComponent {
   }
 
   filtrar() {
-    let filtro='';
+     this.filtro='';
     if (this.categoria) {
-      filtro+='categoria='+this.categoria;
+      this.filtro+='categoria='+this.categoria;
     }
     if (this.busqueda) {
-      filtro += '&nombre=' + this.busqueda;
+      this.filtro += '&nombre=' + this.busqueda;
     }
-    this.service.getProductos(filtro).subscribe((res) => {
+    if (this.filtro == '') {
+      return;
+    }
+    else {
+      this.filtro += '&page=1';
+    }
+    this.service.getProductos(this.filtro).subscribe((res) => {
       this.products = res;
-      console.log(this.products);
+    });
+    this.service.cantPaginas(this.filtro).subscribe((res) => {
+      this.paginas = res;
+      this.numbers = Array(this.paginas).fill(0).map((x,i)=>i+1);
+    });
+    this.numbers = Array(this.paginas).fill(0).map((x, i) => i + 1);
+    this.paginaActual = 1;
+  }
+
+  cambiarPagina(index: number) {
+    if (index > this.paginas) { return; }
+    this.filtro = this.filtro.replace(`page=${this.paginaActual}`, `page=${index}`);
+    this.paginaActual = index;
+    this.service.getProductos(this.filtro).subscribe((res) => {
+      this.products = res;
     });
   }
 
