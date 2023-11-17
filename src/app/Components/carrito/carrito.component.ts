@@ -26,7 +26,7 @@ export class CarritoComponent {
   notification = false;
   notifmsg = '';
   notiftype = '';
-
+  codigo=0;
 
   constructor(private productoService: ProductoService, private Carrito: CarritoService,
     private catService: CategoriaService, private fb: FormBuilder,private UsuarioService:UsuarioService, private router: Router) { }
@@ -72,9 +72,14 @@ export class CarritoComponent {
   comprar() {
     let compra = {productos:(this.lineasCompra.value.filter((l) => l!.cantidad! > 0) as [{producto:string,cantidad:number,precio:number}])};
     this.Carrito.comprar(compra).subscribe((msg) => {
-      console.log(msg);
-      this.notifmsg = msg.message;
-      this.notification = true;
+        this.codigo= 201
+        this.notifmsg = msg.message;
+        this.notification = true;
+      },
+      (error)=>{
+        this.notifmsg = error.error.message;
+        this.codigo= error.status
+        this.notification = true;
       })
   }
 

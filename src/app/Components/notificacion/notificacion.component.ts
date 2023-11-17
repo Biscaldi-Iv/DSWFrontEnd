@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class NotificacionComponent {
   @Input() tipo: string = '';
   @Input() mensaje: string = '';
+  @Input() codigo: number=0;
   @Output() hidde: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   cerrar() {
