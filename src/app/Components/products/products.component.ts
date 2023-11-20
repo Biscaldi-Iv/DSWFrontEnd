@@ -27,6 +27,8 @@ export class ProductsComponent {
   selectedProd: Producto | undefined;
   apiUrl = environment.apiUrl;
 
+  loading=true;
+
   constructor(private service: ProductoService, private Carrito:CarritoService, private Categorias: CategoriaService) { }
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class ProductsComponent {
     this.service.getProductos().subscribe((res) => {
       this.products = res;
       console.log(this.products);
+      this.loading=false;
     });
     console.log(this.buyList);
     this.Categorias.get().subscribe((res) => {

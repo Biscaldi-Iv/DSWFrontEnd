@@ -10,7 +10,7 @@ export class NotificacionComponent {
   @Input() mensaje: string = '';
   @Input() codigo: number=0;
   @Output() hidde: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+  
   cerrar() {
     this.hidde.emit(true);
   }

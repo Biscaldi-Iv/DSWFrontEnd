@@ -144,6 +144,7 @@
       </div>
     </form>
   </div>
+  <app-loading *ngIf="loading"></app-loading>
   <div class="w-full md:px-32 py-32 flex">
     <div class="font-bold text-gray-900 text-xl">
       Total: <b [innerHTML]="total()"></b>

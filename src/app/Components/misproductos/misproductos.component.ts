@@ -19,6 +19,7 @@ export class MisproductosComponent {
   products: Producto[] = [];
   usuario: Usuario = { email: '', direccion: '', telefono:'' , password: '', tienda:'' }
   idTienda:string='';
+  loading:boolean=true;
   ngOnInit() {
     this.usuarioService.getUsuarioByToken()
       .pipe(
@@ -29,6 +30,7 @@ export class MisproductosComponent {
         })
       )
       .subscribe(products => {
+        this.loading=false;
         console.log(products);
         this.products = products;
         console.log(products);
