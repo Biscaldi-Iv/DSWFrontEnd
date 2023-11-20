@@ -30,6 +30,7 @@ import { InfoTiendaComponent } from './Components/info-tienda/info-tienda.compon
 import { MisproductosComponent } from './Components/misproductos/misproductos.component';
 import { NuevoProductoComponent } from './Components/nuevo-producto/nuevo-producto.component';
 import { ListaUsuarioComponent } from './Components/lista-usuario/lista-usuario.component';
+import { LoadingComponent } from './Components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ListaUsuarioComponent } from './Components/lista-usuario/lista-usuario.
     MisproductosComponent,
     NuevoProductoComponent,
     ListaUsuarioComponent,
+    LoadingComponent,
 
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule,

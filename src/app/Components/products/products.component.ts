@@ -31,12 +31,15 @@ export class ProductsComponent {
   apiUrl = environment.apiUrl;
   numbers?: number[];
 
+  loading=true;
+
   constructor(private service: ProductoService, private Carrito:CarritoService, private Categorias: CategoriaService) { }
 
   ngOnInit() {
     initTE({ Carousel });
     this.service.getProductos().subscribe((res) => {
       this.products = res;
+      this.loading=false;
     });
     this.service.cantPaginas().subscribe((res) => {
       this.paginas = res;

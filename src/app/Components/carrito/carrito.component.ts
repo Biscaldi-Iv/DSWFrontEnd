@@ -27,6 +27,7 @@ export class CarritoComponent {
   notifmsg = '';
   notiftype = '';
   codigo=0;
+  loading=true;
 
   constructor(private productoService: ProductoService, private Carrito: CarritoService,
     private catService: CategoriaService, private fb: FormBuilder,private UsuarioService:UsuarioService, private router: Router) { }
@@ -44,6 +45,7 @@ export class CarritoComponent {
       });
       this.agregarLinea({ producto: item!.producto!, cantidad: item!.cantidad! });
     }
+    this.loading=false;
     this.Carrito.save(this.micarrito);
   }
 

@@ -15,8 +15,10 @@ export class ListaUsuarioComponent {
   currentPage: number = 1;
   itemsPerPage: number = 9;
   totalPages:number=0;
+  loading:boolean=true;
   ngOnInit(){
     this.usuarioService.getAllUsuario().subscribe(res=>{
+      this.loading=false;
       this.usuarios=res
     })
   }
