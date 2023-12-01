@@ -64,56 +64,31 @@ export class UsuarioService {
   }
 
   getUsuarioByToken(): Observable<Usuario> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-      })
-    };
 
-    return this.http.get<any>(this.apiUrl + 'api/userbytoken', httpOptions).pipe(
+    return this.http.get<any>(this.apiUrl + 'api/userbytoken').pipe(
      map(response => response.data)
     );
   }
   getAllUsuario(): Observable<Usuario[]> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-      })
-    };
 
-    return this.http.get<{data:Usuario[]}>(this.apiUrl + 'api/users', httpOptions).pipe(
+    return this.http.get<{data:Usuario[]}>(this.apiUrl + 'api/users').pipe(
      map(response => response.data)
     );
   }
 
   updateUsuario(data: Usuario): Observable<Usuario>{
-    const httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-    })
-    };
-    return this.http.put<{data: Usuario}>(this.apiUrl + 'api/user-info', data, httpOptions).pipe(
+    return this.http.put<{data: Usuario}>(this.apiUrl + 'api/user-info', data).pipe(
      map(response => response.data)
     );
   }
   updatePass(user: Usuario): Observable<Usuario>{
-    const httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-    })
-    };
-    return this.http.put<{user: Usuario}>(this.apiUrl + 'api/user-password', user, httpOptions).pipe(
+    return this.http.put<{user: Usuario}>(this.apiUrl + 'api/user-password', user).pipe(
      map(response => response.user)
     );
   }
 
   deleteUser(){
-    const httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-      })
-    }
-    return this.http.delete<any>(this.apiUrl + 'api/user', httpOptions).pipe(
+    return this.http.delete<any>(this.apiUrl + 'api/user').pipe(
         map(res => res)
       );
   }

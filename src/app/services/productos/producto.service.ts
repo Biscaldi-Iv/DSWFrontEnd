@@ -39,11 +39,6 @@ export class ProductoService {
   }
 
   crearProducto(producto:Producto, imagenes: FileList){
-    const httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-    })
-    };
 
     const formData = new FormData();
     formData.append('categoria', producto.categoria ?? '');
@@ -58,15 +53,10 @@ export class ProductoService {
     }
     console.log(formData.get('fotos'))
 
-    return this.http.post(this.apiUrl+'api/create-product', formData, httpOptions)
+    return this.http.post(this.apiUrl+'api/create-product', formData)
   }
 
   editarProducto(id:string, producto:Producto, imagenes: FileList){
-    const httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-    })
-    };
     const formData = new FormData();
     formData.append('categoria', producto.categoria ?? '');
     formData.append('nombre', producto.nombre ?? '');
@@ -80,16 +70,11 @@ export class ProductoService {
     }
     console.log(formData.get('fotos'))
 
-    return this.http.put(this.apiUrl+'api/products/'+ id, formData, httpOptions)
+    return this.http.put(this.apiUrl+'api/products/'+ id, formData)
   }
 
   eliminarProducto(id: string){
-    const httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-      })
-    }
-    return this.http.delete<any>(this.apiUrl + 'api/products/'+ id, httpOptions).pipe(
+    return this.http.delete<any>(this.apiUrl + 'api/products/'+ id).pipe(
         map(res => res)
       );
   }

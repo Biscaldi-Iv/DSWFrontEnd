@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +32,7 @@ import { NuevoProductoComponent } from './Components/nuevo-producto/nuevo-produc
 import { ListaUsuarioComponent } from './Components/lista-usuario/lista-usuario.component';
 import { LoadingComponent } from './Components/loading/loading.component';
 import { Notificacion2Component } from './Components/notificacion2/notificacion2.component';
+import { TokeniterceptorService } from './interceptors/tokeniterceptor.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,14 @@ import { Notificacion2Component } from './Components/notificacion2/notificacion2
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule,
   MatFormFieldModule,MatTableModule,MatInputModule,MatIconModule],
-  providers: [UsuarioService],
+  providers: [
+    UsuarioService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokeniterceptorService,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

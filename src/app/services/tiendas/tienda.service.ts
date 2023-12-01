@@ -15,13 +15,8 @@ export class TiendaService {
   apiUrl = environment.apiUrl;
 
   createTienda(tienda: Tienda): Observable<Tienda> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-      })
-    };
     return this.http
-      .post<Tienda>(this.apiUrl+ 'api/create-tienda', tienda, httpOptions)
+      .post<Tienda>(this.apiUrl+ '/create-tienda', tienda)
       .pipe(
         tap((res: any) => {
           if (res) {
@@ -33,22 +28,12 @@ export class TiendaService {
   }
 
   updateTienda(data: Tienda): Observable<Tienda>{
-    const httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-    })
-    };
-    return this.http.put<{shop: Tienda}>(this.apiUrl + 'api/update-tienda', data, httpOptions).pipe(
+    return this.http.put<{shop: Tienda}>(this.apiUrl + 'api/update-tienda', data).pipe(
      map(response => response.shop)
     );
   }
   deleteTienda(){
-    const httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-    })
-    };
-    return this.http.delete<any>(this.apiUrl + 'api/tienda', httpOptions).pipe(
+    return this.http.delete<any>(this.apiUrl + 'api/tienda').pipe(
      tap((res: any) => {
           if (res) {
             //guardar token
@@ -58,13 +43,8 @@ export class TiendaService {
     );
   }
   getProductosTienda(id: string){
-    const httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-    })
-    };
     console.log(this.apiUrl+'api/productsbyshop/'+id)
-    return this.http.get<{data:Producto[]}>(this.apiUrl+'api/productsbyshop/'+id, httpOptions).pipe(
+    return this.http.get<{data:Producto[]}>(this.apiUrl+'api/productsbyshop/'+id).pipe(
       map(response => response.data)
     );
   }

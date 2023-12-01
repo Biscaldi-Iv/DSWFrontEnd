@@ -1,28 +1,25 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
+  apiUrl = environment.apiUrl;
 
-  }
+   isAuthenticated(): Observable<boolean> {
+     // Solicita validacion de token a backend
+     let r = false;
+     return this.http.get<{ estado: string }>(this.apiUrl + 'api/validar').pipe(map(
+       (res: { estado: any; }) => res.estado =='valido'
+     ));
+   }
 
-   isAuthenticated(): boolean {
-    const token = sessionStorage.getItem('ACCESS_TOKEN'); // Obtén el token del almacenamiento local
-    console.log('token')
-    console.log(!!token)
-    // Realiza la lógica de verificación aquí
-    return !!token; // Devuelve true si el token existe, de lo contrario, false
-  }
   getRole(){
-    const httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
-      })
-    };
-    return this.http.get<any>('http://localhost:3000/api/user/role', httpOptions)
+    return this.http.get<any>(this.apiUrl+'api/user/role')
   }
 }
