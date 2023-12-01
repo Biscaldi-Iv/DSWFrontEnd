@@ -31,6 +31,7 @@ import { MisproductosComponent } from './Components/misproductos/misproductos.co
 import { NuevoProductoComponent } from './Components/nuevo-producto/nuevo-producto.component';
 import { ListaUsuarioComponent } from './Components/lista-usuario/lista-usuario.component';
 import { LoadingComponent } from './Components/loading/loading.component';
+import { Notificacion2Component } from './Components/notificacion2/notificacion2.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { LoadingComponent } from './Components/loading/loading.component';
     NuevoProductoComponent,
     ListaUsuarioComponent,
     LoadingComponent,
+    Notificacion2Component,
 
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule,

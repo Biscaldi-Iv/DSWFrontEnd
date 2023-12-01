@@ -1,7 +1,7 @@
 import { UsuarioService } from './../../services/usuarios/usuario.service';
 import { Carrito } from 'src/app/Interfaces/Carrito';
 import { environment } from '../../../environments/environment';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Producto } from 'src/app/Interfaces/Producto';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { ProductoService } from 'src/app/services/productos/producto.service';
@@ -10,6 +10,7 @@ import { ProductoService } from 'src/app/services/productos/producto.service';
 import { Carousel, initTE } from "tw-elements";
 import { CategoriaService } from 'src/app/services/categorias/categoria.service';
 import { Categoria } from 'src/app/Interfaces/Categoria';
+import { Notificacion2Component } from '../notificacion2/notificacion2.component';
 
 @Component({
   selector: 'app-products',
@@ -31,7 +32,9 @@ export class ProductsComponent {
   apiUrl = environment.apiUrl;
   numbers?: number[];
 
-  loading=true;
+  loading = true;
+
+  @ViewChild(Notificacion2Component) notifcomp!: Notificacion2Component;
 
   constructor(private service: ProductoService, private Carrito:CarritoService, private Categorias: CategoriaService) { }
 
@@ -64,35 +67,15 @@ export class ProductsComponent {
           item!.cantidad = item!.producto.stock;
         }
         this.Carrito.save(this.buyList);
-        this.notificar(b);
+        this.notifcomp.notificar(b);
         return;
       }
     }
     this.buyList.productos!.push({ 'producto': prod, 'cantidad': 1 });
     this.Carrito.save(this.buyList);
     this.message = `Se añadio ${prod.nombre} al carrito!`;
-    this.notificar();
+    this.notifcomp.notificar();
 
-  }
-
-  notificar(b:boolean=true) {
-    const successMessage = document.getElementById('successMessage');
-    const msgcolor=document.getElementById('msgcolor')
-    if (successMessage && msgcolor) {
-      // Mostrar el cartel
-      successMessage.classList.remove('hidden');
-      if (!b) {
-        msgcolor.classList.replace('bg-green-500', 'bg-red-500');
-      }
-
-      // Ocultar el cartel después de 2 segundos
-      setTimeout(() => {
-        successMessage.classList.add('hidden');
-        if (!b) {
-        msgcolor.classList.replace('bg-red-500', 'bg-green-500');
-      }
-      }, 2000);
-    }
   }
 
   filtrar() {

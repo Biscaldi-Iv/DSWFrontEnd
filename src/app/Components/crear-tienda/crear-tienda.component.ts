@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Tienda } from 'src/app/Interfaces/Tienda';
 import { TiendaService } from 'src/app/services/tiendas/tienda.service';
+import { Notificacion2Component } from '../notificacion2/notificacion2.component';
 
 @Component({
   selector: 'app-crear-tienda',
@@ -10,6 +11,8 @@ import { TiendaService } from 'src/app/services/tiendas/tienda.service';
   styleUrls: ['./crear-tienda.component.css']
 })
 export class CrearTiendaComponent {
+  @ViewChild(Notificacion2Component) notifcomp!: Notificacion2Component;
+
   constructor(private tiendaServicio: TiendaService, private router: Router){}
   tienda: Tienda = { name: '', about: '', email:'' , shopAdress: '' }
 
@@ -28,22 +31,8 @@ export class CrearTiendaComponent {
       this.tienda.shopAdress = this.infoForm.value.direccionTienda?? undefined;
       this.tiendaServicio.createTienda(this.tienda).subscribe(
         res=>{
-          this.mostrarCartel();
+          this.notifcomp.notificar();
       });
-    }
-  }
-
-  mostrarCartel() {
-    const successMessage = document.getElementById('successMessage');
-
-    if (successMessage) {
-      // Mostrar el cartel
-      successMessage.classList.remove('hidden');
-
-      // Ocultar el cartel después de 2 segundos
-      setTimeout(() => {
-        successMessage.classList.add('hidden');
-      }, 2000);
     }
   }
 }
